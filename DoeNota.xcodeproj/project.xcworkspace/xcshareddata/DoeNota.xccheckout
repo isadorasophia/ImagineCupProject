@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A10C9CC3-1163-4D01-B2C6-716344E8BC0A</string>
+	<key>IDESourceControlProjectName</key>
+	<string>DoeNota</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>0EF7B8D91548F186D406364B37091BCD5AA0EC0B</key>
+		<string>https://github.com/isadorasophia/DoeNota.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>DoeNota.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>0EF7B8D91548F186D406364B37091BCD5AA0EC0B</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/isadorasophia/DoeNota.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>0EF7B8D91548F186D406364B37091BCD5AA0EC0B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>0EF7B8D91548F186D406364B37091BCD5AA0EC0B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>DoeNotaGit</string>
+		</dict>
+	</array>
+</dict>
+</plist>
