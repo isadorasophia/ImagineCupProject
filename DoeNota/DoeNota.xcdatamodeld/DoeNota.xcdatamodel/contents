@@ -12,6 +12,6 @@
     </entity>
     <elements>
         <element name="Nota" positionX="-63" positionY="-18" width="128" height="90"/>
-        <element name="Preferences" positionX="-63" positionY="9" width="128" height="88"/>
+        <element name="Preferences" positionX="124" positionY="-18" width="128" height="88"/>
     </elements>
 </model>

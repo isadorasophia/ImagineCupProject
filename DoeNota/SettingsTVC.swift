@@ -8,15 +8,27 @@
 
 import UIKit
 
-class SettingsTVC: UITableViewController, UIPickerViewDelegate {
+struct Institution {
+    var name: String
+    var value: Int
+}
 
+class SettingsTVC: UITableViewController, UIPickerViewDelegate {
     required init(coder aDecoder: NSCoder) {
         let screenSize : CGRect = UIScreen.mainScreen().bounds
         
-        pickerInst = UIPickerView(frame: CGRect(x: 0, y: 0, width: screenSize.size.width, height: screenSize.size.height/2))
+        pickerInst = UIPickerView(frame: CGRect(x: 0, y: 0, width: screenSize.size.width, height: 100))
         pickerInst.transform = CGAffineTransformMakeTranslation(0, screenSize.size.height)
         
+        margin = UIView(frame: CGRect(x: 0, y: -0.5, width: screenSize.size.width, height: 100))
+        margin.transform = CGAffineTransformMakeTranslation(0, screenSize.size.height)
+        
+        institutions = [Institution(name: "Fundação Jesus", value: 1),
+            Institution(name: "Fundação Maria", value: 2),
+            Institution(name: "Fundação Bern", value: 3)]
+        
         pickerViewRow = 0
+        count = 0
         
         super.init(coder: aDecoder)
     }
@@ -24,7 +36,10 @@ class SettingsTVC: UITableViewController, UIPickerViewDelegate {
     @IBOutlet weak var wifiButton: UISwitch!
     
     var pickerInst : UIPickerView
+    var margin : UIView
     var pickerViewRow : Int
+    var institutions : [Institution]
+    var count : Int
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,10 +56,21 @@ class SettingsTVC: UITableViewController, UIPickerViewDelegate {
         
         pickerInst.backgroundColor = UIColor.whiteColor()
         
+        // Instead of 2, is the database previous selected
+        let selected = institutions.find { $0.value == 2 }
+        
+        if (selected != nil) {
+            pickerInst.selectRow(selected!, inComponent: 0, animated: true)
+        }
+        
+        margin.backgroundColor = UIColor(red: 205/255, green: 205/255, blue: 205/255, alpha: 1)
+        
+        self.view.addSubview(margin)
         self.view.addSubview(pickerInst)
         
         pickerInst.hidden = true
         pickerInst.alpha = 0
+        margin.alpha = 0
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -64,11 +90,11 @@ class SettingsTVC: UITableViewController, UIPickerViewDelegate {
     
     // MARK: Regarding picker view delegate
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        // Handle selection
+        //println(institutions[row].value)
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 2
+        return institutions.count
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
@@ -76,9 +102,7 @@ class SettingsTVC: UITableViewController, UIPickerViewDelegate {
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        let text = "oi" as String
-        
-        return text
+        return institutions[row].name
     }
     
     func pickerView(pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
@@ -124,9 +148,9 @@ class SettingsTVC: UITableViewController, UIPickerViewDelegate {
     func animationPickerViewAppear () {
         let screenSize : CGRect = UIScreen.mainScreen().bounds
         
-        var transform : CGAffineTransform = CGAffineTransformMakeTranslation(0, screenSize.size.height - 55 - pickerInst.frame.height)
+        var transform : CGAffineTransform = CGAffineTransformMakeTranslation(0, screenSize.size.height - 63 - pickerInst.frame.height)
         
-        UIView.animateWithDuration(0.6, animations: { self.pickerInst.transform = transform; self.pickerInst.alpha = 1 } , completion: nil)
+        UIView.animateWithDuration(0.6, animations: { self.pickerInst.transform = transform; self.margin.transform = transform; self.margin.alpha = 1; self.pickerInst.alpha = 1 } , completion: nil)
     }
     
     func animationPickerViewGone () {
@@ -134,7 +158,7 @@ class SettingsTVC: UITableViewController, UIPickerViewDelegate {
         
         var transform : CGAffineTransform = CGAffineTransformMakeTranslation(0, screenSize.size.height)
         
-        UIView.animateWithDuration(0.6, animations: { self.pickerInst.transform = transform; self.pickerInst.alpha = 0 } , completion: { finished in self.pickerInst.hidden = false })
+        UIView.animateWithDuration(0.6, animations: { self.pickerInst.transform = transform; self.margin.transform = transform; self.margin.alpha = 0; self.pickerInst.alpha = 0 } , completion: { finished in self.pickerInst.hidden = false })
     }
     
     /*
@@ -192,4 +216,15 @@ class SettingsTVC: UITableViewController, UIPickerViewDelegate {
     }
     */
 
+}
+
+extension Array {
+    func find(includedElement: T -> Bool) -> Int? {
+        for (idx, element) in enumerate(self) {
+            if includedElement(element) {
+                return idx
+            }
+        }
+        return nil
+    }
 }
