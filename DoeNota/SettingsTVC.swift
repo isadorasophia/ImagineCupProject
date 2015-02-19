@@ -99,7 +99,7 @@ class SettingsTVC: UITableViewController, UIPickerViewDelegate {
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
-    }
+    } 
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
         return institutions[row].name
