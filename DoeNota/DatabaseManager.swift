@@ -49,31 +49,18 @@ class DatabaseManager: NSObject {
         if (preferences.isEmpty) {
             let entity =  NSEntityDescription.entityForName("Preferences", inManagedObjectContext: managedContext)
             
-            let preference = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
+            let preference = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
             preference.setValue(true, forKey: "hability3G")
             preference.setValue(1, forKey: "institution")
             preference.setValue(0, forKey: "numberPhotos")
+            
+            managedContext.save(&error)
+            
+            preferences.append(preference)
         }
     }
     
-    func totalPhotos() -> Int {
-        if (!preferences.isEmpty) {
-            let preferencesInfo = preferences[0]
-            let totalCount : String = preferencesInfo.valueForKeyPath("numberPhotos") as String
-            let answer : Int? = totalCount.toInt()
-            
-            if (answer != nil) {
-                return answer! 
-            } else {
-                return 0
-            }
-            
-        }
-        else {
-            return 0
-        }
-    }
-    
+    // Regarging notas database
     func savePhoto(image: NSData, institution: NSString, user: NSString) {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let managedContext = appDelegate.managedObjectContext!
@@ -85,6 +72,8 @@ class DatabaseManager: NSObject {
         nota.setValue(institution, forKey: "institution")
         nota.setValue(user, forKey: "user")
         nota.setValue(image, forKey: "photo")
+        
+        preferences[0].setValue(totalPhotos() + 1, forKey: "numberPhotos")
 
         var error: NSError?
         if !managedContext.save(&error) {
@@ -92,16 +81,20 @@ class DatabaseManager: NSObject {
         }
 
         notas.append(nota)
-        preferences[0].setValue(totalPhotos() + 1, forKey: "numberPhotos")
     }
     
     func deleteNextPhoto () {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         
+        var error : NSError?
+        
         let entity =  NSEntityDescription.entityForName("Nota", inManagedObjectContext: managedContext)
         
+        managedContext.deleteObject(notas[notas.endIndex])
         notas.removeLast()
+        
+        managedContext.save(&error)
     }
     
     func getNext () -> NSManagedObject {
@@ -118,6 +111,47 @@ class DatabaseManager: NSObject {
     
     func getInstitution (object: NSManagedObject) -> NSString {
         return object.valueForKey("institution") as NSString
+    }
+    
+    // Regarging preferences database
+    func set3G (status: Bool) {
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
+        var error : NSError?
+        
+        preferences[0].setValue(status, forKey: "hability3G")
+        
+        managedContext.save(&error)
+    }
+    
+    func setInstitution (institution: Int) {
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
+        var error : NSError?
+        
+        preferences[0].setValue(institution, forKey: "institution")
+        
+        managedContext.save(&error)
+    }
+    
+    func totalPhotos() -> Int {
+        if (!preferences.isEmpty) {
+            let preferencesInfo = preferences[0]
+            let totalCount : String = preferencesInfo.valueForKeyPath("numberPhotos") as String
+            let answer : Int? = totalCount.toInt()
+            
+            if (answer != nil) {
+                return answer!
+            } else {
+                return 0
+            }
+            
+        }
+        else {
+            return 0
+        }
     }
     
     func getHability3G () -> Bool {

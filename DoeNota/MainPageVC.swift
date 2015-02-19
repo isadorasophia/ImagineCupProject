@@ -62,11 +62,11 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         
         self.navigationItem.titleView = titleView
         
-        // Do any additional setup after loading the view.
-        
         // Loads buttons actions
         Settings.action = "ButtonClicked:"
         Archive.action = "ButtonClicked:"
+        
+        // Testing database...
     }
 
     override func didReceiveMemoryWarning() {

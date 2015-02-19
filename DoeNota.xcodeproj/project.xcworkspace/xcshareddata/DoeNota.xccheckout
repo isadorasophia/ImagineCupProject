@@ -12,20 +12,24 @@
 	<dict>
 		<key>0EF7B8D91548F186D406364B37091BCD5AA0EC0B</key>
 		<string>https://github.com/isadorasophia/DoeNota.git</string>
+		<key>5C0ACE37D5B9BD0C3265B606F296D99D0130F9DD</key>
+		<string>https://github.com/isadorasophia/ImagineCupProject.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>DoeNota.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>0EF7B8D91548F186D406364B37091BCD5AA0EC0B</key>
+		<string>../../../DoeNotaGit</string>
+		<key>5C0ACE37D5B9BD0C3265B606F296D99D0130F9DD</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/isadorasophia/DoeNota.git</string>
+	<string>https://github.com/isadorasophia/ImagineCupProject.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>0EF7B8D91548F186D406364B37091BCD5AA0EC0B</string>
+	<string>5C0ACE37D5B9BD0C3265B606F296D99D0130F9DD</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -35,6 +39,14 @@
 			<string>0EF7B8D91548F186D406364B37091BCD5AA0EC0B</string>
 			<key>IDESourceControlWCCName</key>
 			<string>DoeNotaGit</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5C0ACE37D5B9BD0C3265B606F296D99D0130F9DD</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ImagineCupApp</string>
 		</dict>
 	</array>
 </dict>

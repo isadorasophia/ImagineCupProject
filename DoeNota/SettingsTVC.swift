@@ -8,14 +8,43 @@
 
 import UIKit
 
-class SettingsTVC: UITableViewController {
+class SettingsTVC: UITableViewController, UIPickerViewDelegate {
+
+    required init(coder aDecoder: NSCoder) {
+        let screenSize : CGRect = UIScreen.mainScreen().bounds
+        
+        pickerInst = UIPickerView(frame: CGRect(x: 0, y: 0, width: screenSize.size.width, height: screenSize.size.height/2))
+        pickerInst.transform = CGAffineTransformMakeTranslation(0, screenSize.size.height)
+        
+        pickerViewRow = 0
+        
+        super.init(coder: aDecoder)
+    }
     
     @IBOutlet weak var wifiButton: UISwitch!
     
+    var pickerInst : UIPickerView
+    var pickerViewRow : Int
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let screenSize : CGRect = UIScreen.mainScreen().bounds
 
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Preferências", style: .Plain, target: nil, action: nil)
+        // Set switch button
+        wifiButton.setOn(DatabaseManager.sharedInstance.getHability3G(), animated: true)
+        wifiButton.addTarget(self, action: "set3GOptions:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        // Set picker view
+        pickerInst.delegate = self
+        pickerInst.showsSelectionIndicator = true
+        
+        pickerInst.backgroundColor = UIColor.whiteColor()
+        
+        self.view.addSubview(pickerInst)
+        
+        pickerInst.hidden = true
+        pickerInst.alpha = 0
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -23,7 +52,42 @@ class SettingsTVC: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    
+    // Regarding 3G functionality
+    func set3GOptions (sender: UISwitch!) {
+        if (sender.on) {
+            DatabaseManager.sharedInstance.set3G(true)
+        } else {
+            DatabaseManager.sharedInstance.set3G(false)
+        }
+    }
+    
+    // MARK: Regarding picker view delegate
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        // Handle selection
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 2
+    }
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        let text = "oi" as String
+        
+        return text
+    }
+    
+    func pickerView(pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+        let selectionWidth : CGFloat = 300
+        
+        return selectionWidth
+    }
 
+    // Regarding VC
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -43,6 +107,36 @@ class SettingsTVC: UITableViewController {
         return 2
     }
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if (indexPath.row == pickerViewRow) {
+            pickerInst.hidden = false
+            
+            animationPickerViewAppear()
+        }
+    }
+    
+    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        if (indexPath.row == pickerViewRow) {
+            animationPickerViewGone()
+        }
+    }
+    
+    func animationPickerViewAppear () {
+        let screenSize : CGRect = UIScreen.mainScreen().bounds
+        
+        var transform : CGAffineTransform = CGAffineTransformMakeTranslation(0, screenSize.size.height - 55 - pickerInst.frame.height)
+        
+        UIView.animateWithDuration(0.6, animations: { self.pickerInst.transform = transform; self.pickerInst.alpha = 1 } , completion: nil)
+    }
+    
+    func animationPickerViewGone () {
+        let screenSize : CGRect = UIScreen.mainScreen().bounds
+        
+        var transform : CGAffineTransform = CGAffineTransformMakeTranslation(0, screenSize.size.height)
+        
+        UIView.animateWithDuration(0.6, animations: { self.pickerInst.transform = transform; self.pickerInst.alpha = 0 } , completion: { finished in self.pickerInst.hidden = false })
+    }
+    
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
