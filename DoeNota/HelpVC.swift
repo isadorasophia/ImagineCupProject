@@ -2,7 +2,7 @@
 //  HelpVC.swift
 //  DoeNota
 //
-//  Created by Isa Sophia on 2/16/15.
+//  Created by Isadora Sophia on 3/19/15.
 //  Copyright (c) 2015 Isadora Sophia. All rights reserved.
 //
 
