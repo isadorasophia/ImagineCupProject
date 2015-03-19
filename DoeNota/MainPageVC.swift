@@ -10,7 +10,6 @@ import UIKit
 
 class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var Settings: UIBarButtonItem!
-    @IBOutlet weak var Archive: UIBarButtonItem!
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -64,7 +63,6 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         
         // Loads buttons actions
         Settings.action = "ButtonClicked:"
-        Archive.action = "ButtonClicked:"
         
         // Testing database...
     }
@@ -79,10 +77,6 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
             self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Preferências", style: .Plain, target: nil, action: nil)
             
             performSegueWithIdentifier("ToSettings", sender: nil)
-        } else if (sender == Archive) {
-            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Notas", style: .Plain, target: nil, action: nil)
-            
-            performSegueWithIdentifier("ToArchive", sender: nil)
         } else {
             self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Dicas", style: .Plain, target: nil, action: nil)
             

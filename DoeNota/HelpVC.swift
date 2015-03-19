@@ -10,26 +10,28 @@ import UIKit
 
 class HelpVC: UIViewController {
 
+    required init(coder aDecoder: NSCoder) {
+        imageFile = "Camera.png"
+        currentText = "olar"
+        
+        super.init(coder: aDecoder)
+    }
+    
+    @IBOutlet weak var currentImageView: UIImageView!
+    @IBOutlet weak var textHelp: UITextView!
+    
+    var imageFile : NSString
+    var currentText : NSString
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        self.currentImageView.image = UIImage (named: self.imageFile)
+        self.textHelp.text = self.currentText
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -65,7 +65,7 @@
                     <connections>
                         <outlet property="Settings" destination="xVI-gJ-pgP" id="J3R-U7-Rha"/>
                         <segue destination="LKu-M9-cAI" kind="show" identifier="ToSettings" id="da5-TJ-N0p"/>
-                        <segue destination="3Ls-VF-ybF" kind="show" identifier="ToHelp" id="hsd-LZ-qfT"/>
+                        <segue destination="oh6-9s-fdQ" kind="show" identifier="ToHelp" id="poO-c3-bfd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -138,22 +138,36 @@
             </objects>
             <point key="canvasLocation" x="459" y="1262"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="fqw-Tu-aKb">
+            <objects>
+                <viewController id="oh6-9s-fdQ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="P26-af-swm"/>
+                        <viewControllerLayoutGuide type="bottom" id="mao-Kn-lGJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0WF-hm-R3z">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XHi-x0-lVZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1131" y="449"/>
+        </scene>
         <!--Page View Controller-->
         <scene sceneID="BLb-8V-AwW">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="none" id="3Ls-VF-ybF" sceneMemberID="viewController">
-                    <connections>
-                        <segue destination="QU1-Ir-Rci" kind="presentation" identifier="PageView" id="LBV-Ft-g2c"/>
-                    </connections>
-                </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IcG-Da-qGh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="none" id="3Ls-VF-ybF" sceneMemberID="viewController"/>
             </objects>
-            <point key="canvasLocation" x="1128" y="449"/>
+            <point key="canvasLocation" x="1118" y="1262"/>
         </scene>
         <!--HelpVC-->
         <scene sceneID="pkn-pf-XaN">
             <objects>
-                <viewController id="QU1-Ir-Rci" customClass="HelpVC" customModule="DoeNota" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PageView" id="QU1-Ir-Rci" customClass="HelpVC" customModule="DoeNota" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dlk-5q-SWD"/>
                         <viewControllerLayoutGuide type="bottom" id="gU3-P4-Jxq"/>
@@ -182,10 +196,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="CurrentImageView" destination="WeV-L8-KxG" id="Yhj-Iz-gjC"/>
+                        <outlet property="TextHelp" destination="cMv-sl-X3e" id="Dxd-fV-lHx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V8f-xK-FCR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1793" y="449"/>
+            <point key="canvasLocation" x="1794" y="1262"/>
         </scene>
     </scenes>
     <resources>
