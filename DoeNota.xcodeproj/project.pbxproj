@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E535A601ABBDD1B0057E491 /* 1st.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6E535A5C1ABBDD1B0057E491 /* 1st.jpg */; };
+		6E535A611ABBDD1B0057E491 /* 2nd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6E535A5D1ABBDD1B0057E491 /* 2nd.jpg */; };
+		6E535A621ABBDD1B0057E491 /* 3rd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6E535A5E1ABBDD1B0057E491 /* 3rd.jpg */; };
+		6E535A631ABBDD1B0057E491 /* 4rd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6E535A5F1ABBDD1B0057E491 /* 4rd.jpg */; };
 		6E798D351ABB615A005A1FA3 /* HelpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E798D341ABB615A005A1FA3 /* HelpVC.swift */; };
 		6E798D371ABBC217005A1FA3 /* HelpParticleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E798D361ABBC217005A1FA3 /* HelpParticleVC.swift */; };
 		6E798D391ABBC27B005A1FA3 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6E798D381ABBC272005A1FA3 /* Roboto-Thin.ttf */; };
@@ -36,6 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6E535A5C1ABBDD1B0057E491 /* 1st.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1st.jpg; sourceTree = SOURCE_ROOT; };
+		6E535A5D1ABBDD1B0057E491 /* 2nd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2nd.jpg; sourceTree = SOURCE_ROOT; };
+		6E535A5E1ABBDD1B0057E491 /* 3rd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3rd.jpg; sourceTree = SOURCE_ROOT; };
+		6E535A5F1ABBDD1B0057E491 /* 4rd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4rd.jpg; sourceTree = SOURCE_ROOT; };
 		6E798D341ABB615A005A1FA3 /* HelpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpVC.swift; sourceTree = "<group>"; };
 		6E798D361ABBC217005A1FA3 /* HelpParticleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpParticleVC.swift; sourceTree = "<group>"; };
 		6E798D381ABBC272005A1FA3 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = SOURCE_ROOT; };
@@ -76,6 +84,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E535A5B1ABBDD100057E491 /* Samples */ = {
+			isa = PBXGroup;
+			children = (
+				6E535A5C1ABBDD1B0057E491 /* 1st.jpg */,
+				6E535A5D1ABBDD1B0057E491 /* 2nd.jpg */,
+				6E535A5E1ABBDD1B0057E491 /* 3rd.jpg */,
+				6E535A5F1ABBDD1B0057E491 /* 4rd.jpg */,
+			);
+			name = Samples;
+			sourceTree = "<group>";
+		};
 		6E798D311ABB5EA7005A1FA3 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +124,7 @@
 		6EE78AD21A8D71BF00170FB6 /* DoeNota */ = {
 			isa = PBXGroup;
 			children = (
+				6E535A5B1ABBDD100057E491 /* Samples */,
 				6E798D311ABB5EA7005A1FA3 /* Fonts */,
 				6EE78B141A915EAD00170FB6 /* Camera.png */,
 				6EE78B161A915EB200170FB6 /* DoeNota.png */,
@@ -230,9 +250,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E535A631ABBDD1B0057E491 /* 4rd.jpg in Resources */,
 				6EE78AE31A8D71BF00170FB6 /* LaunchScreen.xib in Resources */,
 				6EE78B1E1A923C7A00170FB6 /* Main.storyboard in Resources */,
+				6E535A611ABBDD1B0057E491 /* 2nd.jpg in Resources */,
+				6E535A621ABBDD1B0057E491 /* 3rd.jpg in Resources */,
 				6E798D391ABBC27B005A1FA3 /* Roboto-Thin.ttf in Resources */,
+				6E535A601ABBDD1B0057E491 /* 1st.jpg in Resources */,
 				6EE78B151A915EAD00170FB6 /* Camera.png in Resources */,
 				6EE78AE01A8D71BF00170FB6 /* Images.xcassets in Resources */,
 				6EE78B171A915EB200170FB6 /* DoeNota.png in Resources */,
