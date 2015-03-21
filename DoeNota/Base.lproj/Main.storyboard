@@ -138,10 +138,10 @@
             </objects>
             <point key="canvasLocation" x="459" y="1262"/>
         </scene>
-        <!--View Controller-->
+        <!--HelpVC-->
         <scene sceneID="fqw-Tu-aKb">
             <objects>
-                <viewController id="oh6-9s-fdQ" sceneMemberID="viewController">
+                <viewController id="oh6-9s-fdQ" customClass="HelpVC" customModule="DoeNota" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="P26-af-swm"/>
                         <viewControllerLayoutGuide type="bottom" id="mao-Kn-lGJ"/>
@@ -200,7 +200,8 @@
                         <outlet property="CurrentImageView" destination="WeV-L8-KxG" id="Yhj-Iz-gjC"/>
                         <outlet property="MyImageView" destination="WeV-L8-KxG" id="l0f-er-AJA"/>
                         <outlet property="TextHelp" destination="cMv-sl-X3e" id="Dxd-fV-lHx"/>
-                        <outlet property="myTextView" destination="cMv-sl-X3e" id="LVs-lu-2ry"/>
+                        <outlet property="myImageView" destination="WeV-L8-KxG" id="6rr-Ox-gKk"/>
+                        <outlet property="myTextView" destination="cMv-sl-X3e" id="qix-2i-y37"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V8f-xK-FCR" userLabel="First Responder" sceneMemberID="firstResponder"/>

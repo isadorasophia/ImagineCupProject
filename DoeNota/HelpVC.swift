@@ -10,29 +10,45 @@ import UIKit
 
 class HelpVC: UIViewController, UIPageViewControllerDataSource {
     
-    var pageTitles = [NSString] ()
-    var pageImages = [NSString] ()
-    var pageViewController : UIPageViewController = UIPageViewController()
+    let pageTitles = ["a", "b", "c", "d"]
+    var pageImages = ["1st.jpg", "2nd.jpg", "3rd.jpg", "4rd.jpg"]
+    var count = 0
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    var pageViewController : UIPageViewController!
+    
+    @IBAction func swiped(sender: AnyObject) {
         
-        // Now do it right
-        self.pageTitles = ["a", "b", "c", "d"]
-        self.pageImages = ["a", "b", "c", "d"]
-        
-        self.pageViewController = self.storyboard!.instantiateViewControllerWithIdentifier("PageViewController") as UIPageViewController
+        self.pageViewController.view .removeFromSuperview()
+        self.pageViewController.removeFromParentViewController()
+        reset()
+    }
+    
+    func reset() {
+        /* Getting the page View controller */
+        pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PageViewController") as UIPageViewController
         self.pageViewController.dataSource = self
         
-        var startingView = self.viewControllerAtIndex(0)!
-        var viewControllers = [startingView]
-        self.pageViewController.setViewControllers(viewControllers, direction: UIPageViewControllerNavigationDirection.Reverse, animated: false, completion: nil)
+        let pageContentViewController = self.viewControllerAtIndex(0)
+        self.pageViewController.setViewControllers([pageContentViewController!], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
         
-        self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 200)
+        self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
         
         self.addChildViewController(pageViewController)
         self.view.addSubview(pageViewController.view)
         self.pageViewController.didMoveToParentViewController(self)
+    }
+    
+    @IBAction func start(sender: AnyObject) {
+        let pageContentViewController = self.viewControllerAtIndex(0)
+        
+        self.pageViewController.setViewControllers([pageContentViewController!], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
+    }
+
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        reset()
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,7 +62,8 @@ class HelpVC: UIViewController, UIPageViewControllerDataSource {
         }
         
         // Create the apropriate View Controller
-        let helpParticleVC = self.storyboard!.instantiateViewControllerWithIdentifier("HelpParticle") as HelpParticleVC
+        let helpParticleVC = self.storyboard?.instantiateViewControllerWithIdentifier("HelpParticle") as HelpParticleVC
+        
         helpParticleVC.imageFile = self.pageImages[index]
         helpParticleVC.currentText = self.pageTitles[index]
         helpParticleVC.pageIndex = index
@@ -56,25 +73,27 @@ class HelpVC: UIViewController, UIPageViewControllerDataSource {
     
     // UIPageViewControllerDataSource    
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-        var index = (viewController as HelpParticleVC).pageIndex
+        var index = (viewController as HelpParticleVC).pageIndex!
         
-        if ((index == 0) || (index == NSNotFound)) {
+        if ((index <= 0) || (index == NSNotFound)) {
             return nil;
         }
         
-        index--;
+        index--
+        
         return self.viewControllerAtIndex(index)
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-        var index = (viewController as HelpParticleVC).pageIndex
+        var index = (viewController as HelpParticleVC).pageIndex!
         
         if (index == NSNotFound) {
             return nil;
         }
         
         index++;
-        if (index == self.pageTitles.count) {
+        
+        if (index >= self.pageTitles.count) {
             return nil;
         }
         
