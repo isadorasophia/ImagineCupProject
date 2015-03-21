@@ -159,7 +159,7 @@
         <!--Page View Controller-->
         <scene sceneID="BLb-8V-AwW">
             <objects>
-                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="none" id="3Ls-VF-ybF" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="3Ls-VF-ybF" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IcG-Da-qGh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1118" y="1262"/>
@@ -197,9 +197,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="CurrentImageView" destination="WeV-L8-KxG" id="Yhj-Iz-gjC"/>
-                        <outlet property="MyImageView" destination="WeV-L8-KxG" id="l0f-er-AJA"/>
-                        <outlet property="TextHelp" destination="cMv-sl-X3e" id="Dxd-fV-lHx"/>
                         <outlet property="myImageView" destination="WeV-L8-KxG" id="6rr-Ox-gKk"/>
                         <outlet property="myTextView" destination="cMv-sl-X3e" id="qix-2i-y37"/>
                     </connections>
