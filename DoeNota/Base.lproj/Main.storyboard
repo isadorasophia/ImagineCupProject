@@ -176,11 +176,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WeV-L8-KxG">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="474"/>
-                            </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMv-sl-X3e">
-                                <rect key="frame" x="0.0" y="482" width="600" height="118"/>
+                                <rect key="frame" x="0.0" y="537" width="600" height="63"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText">
                                     <fragment content="This is a test">
@@ -193,8 +190,15 @@
                                 </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="523" translatesAutoresizingMaskIntoConstraints="NO" id="WeV-L8-KxG">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="523"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="WeV-L8-KxG" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Uy5-yK-nh5" secondAttribute="leading" id="Noy-G9-vdR"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WeV-L8-KxG" secondAttribute="trailing" constant="600" id="fH3-ys-uT7"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="myImageView" destination="WeV-L8-KxG" id="6rr-Ox-gKk"/>

@@ -21,7 +21,10 @@ class HelpParticleVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        self.myImageView.image = UIImage(named: self.imageFile)
+        var initialImg = UIImage(named: self.imageFile)!
+        
+        self.myImageView.image = initialImg
+        
         self.myTextView.text = self.currentText
         self.myTextView.alpha = 0.1
         UIView.animateWithDuration(1.0, animations: { () -> Void in
