@@ -15,8 +15,8 @@ class HelpParticleVC: UIViewController {
     
     var pageIndex : Int?
     
-    @IBOutlet weak var myImageView: UIImageView!
-    @IBOutlet weak var myTextView: UITextView!
+    var myImageView: UIImageView!
+    var myTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +30,9 @@ class HelpParticleVC: UIViewController {
         UIView.animateWithDuration(1.0, animations: { () -> Void in
             self.myTextView.alpha = 1.0
         })
+        
+        self.view.addSubview(myImageView)
+        self.view.addSubview(myTextView)
     }
     
     override func didReceiveMemoryWarning() {

@@ -14,6 +14,8 @@ class HelpVC: UIViewController, UIPageViewControllerDataSource {
     var pageImages = ["1st.jpg", "2nd.jpg", "3rd.jpg", "4rd.jpg"]
     var count = 0
     
+    var windowHeight : CGFloat = 0
+    
     var pageViewController : UIPageViewController!
     
     @IBAction func swiped(sender: AnyObject) {
@@ -31,7 +33,7 @@ class HelpVC: UIViewController, UIPageViewControllerDataSource {
         let pageContentViewController = self.viewControllerAtIndex(0)
         self.pageViewController.setViewControllers([pageContentViewController!], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
         
-        self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
+        self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.width, windowHeight)
         
         self.addChildViewController(pageViewController)
         self.view.addSubview(pageViewController.view)
@@ -48,6 +50,7 @@ class HelpVC: UIViewController, UIPageViewControllerDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.windowHeight = self.view.frame.height
         reset()
     }
 
@@ -63,6 +66,11 @@ class HelpVC: UIViewController, UIPageViewControllerDataSource {
         
         // Create the apropriate View Controller
         let helpParticleVC = self.storyboard?.instantiateViewControllerWithIdentifier("HelpParticle") as HelpParticleVC
+        
+        helpParticleVC.myImageView = UIImageView(frame: CGRectMake(0, 0, self.view.frame.width, windowHeight - windowHeight/4))
+        helpParticleVC.myTextView = UITextView(frame: CGRectMake(0, windowHeight - windowHeight/4, self.view.frame.width, 60))
+        
+        helpParticleVC.myTextView.font = UIFont(name: "Roboto-Light", size: 30)
         
         helpParticleVC.imageFile = self.pageImages[index]
         helpParticleVC.currentText = self.pageTitles[index]
