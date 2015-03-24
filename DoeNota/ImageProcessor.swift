@@ -26,18 +26,18 @@ class ImageProcessor: NSObject {
         var actualHeight = image.size.height;
         var actualWidth = image.size.width;
         var imgRatio = actualWidth/actualHeight;
-        var maxRatio : CGFloat = 640.0/960.0;
+        var maxRatio : CGFloat = 1280.0/1920.0;
         
         if (imgRatio != maxRatio) {
             if (imgRatio < maxRatio) {
-                imgRatio = 960.0 / actualHeight;
+                imgRatio = 1920.0 / actualHeight;
                 actualWidth = imgRatio * actualWidth;
-                actualHeight = 960.0;
+                actualHeight = 1920.0;
             }
             else {
-                imgRatio = 640.0 / actualWidth;
+                imgRatio = 1280.0 / actualWidth;
                 actualHeight = imgRatio * actualHeight;
-                actualWidth = 640.0;
+                actualWidth = 1280.0;
             }
         }
         

@@ -48,11 +48,13 @@ class DatabaseManager: NSObject {
         
         if (preferences.isEmpty) {
             let entity =  NSEntityDescription.entityForName("Preferences", inManagedObjectContext: managedContext)
+            let uniqueID = UIDevice.currentDevice().identifierForVendor!.UUIDString
             
             let preference = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
             preference.setValue(true, forKey: "hability3G")
             preference.setValue(1, forKey: "institution")
             preference.setValue(0, forKey: "numberPhotos")
+            preference.setValue(uniqueID, forKey: "userID")
             
             managedContext.save(&error)
             
@@ -169,6 +171,14 @@ class DatabaseManager: NSObject {
             return answer
         } else {
             return 1
+        }
+    }
+    
+    func userID () -> String {
+        if (!preferences.isEmpty) {
+            return preferences[0].valueForKey("userID") as String
+        } else {
+            return "undefined"
         }
     }
 }

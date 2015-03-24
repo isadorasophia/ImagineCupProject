@@ -125,9 +125,9 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     // Image delegate, picks the image in order to process it and send to server
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         let finalImg = ImageProcessor.processImage(image)
-        let convertedImage : NSData = UIImageJPEGRepresentation(finalImg, 0.75)
+        let convertedImage : NSData = UIImageJPEGRepresentation(finalImg, 0.70)
         
-        ServerConnection.sendToServer(convertedImage, user: "1", institution: "2")
+        ServerConnection.sendToServer(convertedImage, user: "1", institution: DatabaseManager.sharedInstance.getInstitution(), id: "IOS " + DatabaseManager.sharedInstance.userID())
         
         picker.dismissViewControllerAnimated(true, completion: nil)
     }

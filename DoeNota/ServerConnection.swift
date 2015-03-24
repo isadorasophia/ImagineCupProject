@@ -22,11 +22,11 @@ class ServerConnection: NSObject, NSURLConnectionDelegate, NSXMLParserDelegate {
         return Static.instance!
     }
     
-    class func sendToServer (imageData: NSData, user: NSString, institution: NSString) -> Bool {
+    class func sendToServer (imageData: NSData, user: NSString, institution: Int, id: String) -> Bool {
         var imageBase64 = imageData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding76CharacterLineLength)
         
         var head = "<?xml version='1.0' encoding='utf-8'?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:not=\"http://lampiao.ic.unicamp.br:8085/WebServiceNotaFiscal/webservices/NotaFiscalImplementation?wsdl\">\n"
-        var body = "<soapenv:Header/>\n<soapenv:Body>\n<not:upload>\n<arg0>\(imageBase64)</arg0>\n<arg1>\(user)</arg1>\n<arg2>\(institution)</arg2>\n<arg3>IOS</arg3>\n"
+        var body = "<soapenv:Header/>\n<soapenv:Body>\n<not:upload>\n<arg0>\(imageBase64)</arg0>\n<arg1>\(user)</arg1>\n<arg2>\(institution)</arg2>\n<arg3>\(id)</arg3>\n"
         var end = "</not:upload>\n</soapenv:Body>\n</soapenv:Envelope>"
         
         var parameters = head + body + end

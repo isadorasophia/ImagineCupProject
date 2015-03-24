@@ -33,7 +33,7 @@ class HelpVC: UIViewController, UIPageViewControllerDataSource {
         let pageContentViewController = self.viewControllerAtIndex(0)
         self.pageViewController.setViewControllers([pageContentViewController!], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
         
-        self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.width, windowHeight)
+        self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.width, windowHeight + 40)
         
         self.addChildViewController(pageViewController)
         self.view.addSubview(pageViewController.view)
@@ -67,7 +67,8 @@ class HelpVC: UIViewController, UIPageViewControllerDataSource {
         // Create the apropriate View Controller
         let helpParticleVC = self.storyboard?.instantiateViewControllerWithIdentifier("HelpParticle") as HelpParticleVC
         
-        helpParticleVC.myImageView = UIImageView(frame: CGRectMake(0, 0, self.view.frame.width, windowHeight))
+        helpParticleVC.myImageView = UIImageView(frame: CGRectMake(0, 0, self.view.frame.width, windowHeight - 60))
+        
 //        helpParticleVC.myTextView = UITextView(frame: CGRectMake(0, windowHeight - (windowHeight/3 * 0.85), self.view.frame.width, (windowHeight/3 * 0.85)))
         
 //        helpParticleVC.myTextView.font = UIFont(name: "Roboto-Light", size: windowHeight/32)
