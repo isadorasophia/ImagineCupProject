@@ -17,7 +17,7 @@ class SettingsTVC: UITableViewController, UIPickerViewDelegate {
     required init(coder aDecoder: NSCoder) {
         let screenSize : CGRect = UIScreen.mainScreen().bounds
         
-        pickerInst = UIPickerView(frame: CGRect(x: 0, y: 0, width: screenSize.size.width, height: 100))
+        pickerInst = UIPickerView(frame: CGRect(x: 0, y: 0, width: screenSize.size.width, height: screenSize.size.height/2))
         pickerInst.transform = CGAffineTransformMakeTranslation(0, screenSize.size.height)
         
         margin = UIView(frame: CGRect(x: 0, y: -0.5, width: screenSize.size.width, height: 100))
@@ -106,9 +106,35 @@ class SettingsTVC: UITableViewController, UIPickerViewDelegate {
     }
     
     func pickerView(pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
-        let selectionWidth : CGFloat = 300
+        let screenSize : CGRect = UIScreen.mainScreen().bounds
+        let selectionWidth : CGFloat = screenSize.size.width
         
         return selectionWidth
+    }
+    
+    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView {
+        let screenSize : CGRect = UIScreen.mainScreen().bounds
+        var pickerLabel : UILabel
+        
+        let frame = CGRectMake(0, 0, screenSize.width, screenSize.height/(2 * 5))
+        pickerLabel = UILabel(frame: frame)
+        pickerLabel.text = institutions[row].name
+        
+        var fontSize : CGFloat
+        
+        if (countElements(pickerLabel.text!) >= 40 ) {
+            fontSize = 15
+        } else if (countElements(pickerLabel.text!) >= 25) {
+            fontSize = 17
+        }
+        else {
+            fontSize = 20
+        }
+        
+        pickerLabel.font = UIFont(name: pickerLabel.font.fontName, size: fontSize)
+        pickerLabel.textAlignment = NSTextAlignment.Center
+        
+        return pickerLabel
     }
 
     // Regarding VC
