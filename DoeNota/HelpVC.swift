@@ -10,7 +10,7 @@ import UIKit
 
 class HelpVC: UIViewController, UIPageViewControllerDataSource {
     
-    let pageTitles = ["a", "b", "c", "d"]
+    let pageTitles = ["1) Tente seguir os seguintes parâmetros enquanto tirar a sua foto.", "2) Caso sua nota fiscal seja muito grande, tente dobrá-la dessa forma.", "3) Evite tirar a foto de sua nota se ela foi emitida a mais de um mês, ou se possui CPF registrado.", "4) Também evite tirar fotos muito tortas ou que escondam informações essenciais."]
     var pageImages = ["1st.jpg", "2nd.jpg", "3rd.jpg", "4rd.jpg"]
     var count = 0
     
@@ -33,7 +33,7 @@ class HelpVC: UIViewController, UIPageViewControllerDataSource {
         let pageContentViewController = self.viewControllerAtIndex(0)
         self.pageViewController.setViewControllers([pageContentViewController!], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
         
-        self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.width, windowHeight)
+        self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.width, windowHeight + 44)
         
         self.addChildViewController(pageViewController)
         self.view.addSubview(pageViewController.view)
@@ -67,10 +67,12 @@ class HelpVC: UIViewController, UIPageViewControllerDataSource {
         // Create the apropriate View Controller
         let helpParticleVC = self.storyboard?.instantiateViewControllerWithIdentifier("HelpParticle") as HelpParticleVC
         
-        helpParticleVC.myImageView = UIImageView(frame: CGRectMake(0, 0, self.view.frame.width, windowHeight - windowHeight/4))
-        helpParticleVC.myTextView = UITextView(frame: CGRectMake(0, windowHeight - windowHeight/4, self.view.frame.width, 60))
+        helpParticleVC.myImageView = UIImageView(frame: CGRectMake(0, 0, self.view.frame.width, windowHeight - (windowHeight/3 * 0.85)))
+        helpParticleVC.myTextView = UITextView(frame: CGRectMake(0, windowHeight - (windowHeight/3 * 0.85), self.view.frame.width, (windowHeight/3 * 0.85)))
         
-        helpParticleVC.myTextView.font = UIFont(name: "Roboto-Light", size: 30)
+        helpParticleVC.myTextView.font = UIFont(name: "Roboto-Light", size: windowHeight/32)
+        helpParticleVC.myTextView.textColor = UIColor(red: 154/255, green: 126/255, blue: 158/255, alpha: 1)
+        helpParticleVC.myTextView.editable = false
         
         helpParticleVC.imageFile = self.pageImages[index]
         helpParticleVC.currentText = self.pageTitles[index]
