@@ -137,6 +137,9 @@ class SettingsTVC: UITableViewController, UIPickerViewDelegate {
             
             animationPickerViewAppear()
         }
+        else if (indexPath.row != 1) {
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
     }
     
     override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {

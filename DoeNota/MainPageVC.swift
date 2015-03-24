@@ -43,7 +43,7 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         
         // Adds the gallery button
         let galleryImg = UIImage(named: "Gallery")?.imageWithColor(UIColor(red: 197/255, green: 171/255, blue: 202/255, alpha: 1))
-        let galleryFrame = CGRectMake(screenSize.width * 0.5 + 37, screenSize.height - 97, 22, 22)
+        let galleryFrame = CGRectMake(screenSize.width * 0.5 + 37, screenSize.height - 97 - UIApplication.sharedApplication().statusBarFrame.height + 20, 22, 22)
         var galleryButton = UIButton(frame: galleryFrame)
         galleryButton.setImage(galleryImg, forState: UIControlState.Normal)
         galleryButton.setImage(galleryImg, forState: UIControlState.Highlighted)
@@ -70,8 +70,6 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         
         // Loads buttons actions
         Settings.action = "ButtonClicked:"
-        
-        // Testing database...
     }
 
     override func didReceiveMemoryWarning() {
