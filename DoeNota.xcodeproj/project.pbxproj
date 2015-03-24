@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6E535A601ABBDD1B0057E491 /* 1st.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6E535A5C1ABBDD1B0057E491 /* 1st.jpg */; };
-		6E535A611ABBDD1B0057E491 /* 2nd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6E535A5D1ABBDD1B0057E491 /* 2nd.jpg */; };
-		6E535A621ABBDD1B0057E491 /* 3rd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6E535A5E1ABBDD1B0057E491 /* 3rd.jpg */; };
-		6E535A631ABBDD1B0057E491 /* 4rd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6E535A5F1ABBDD1B0057E491 /* 4rd.jpg */; };
+		6E07DEBF1AC104C100077837 /* 1st.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6E07DEBB1AC104C100077837 /* 1st.jpg */; };
+		6E07DEC01AC104C100077837 /* 2nd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6E07DEBC1AC104C100077837 /* 2nd.jpg */; };
+		6E07DEC11AC104C100077837 /* 3rd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6E07DEBD1AC104C100077837 /* 3rd.jpg */; };
+		6E07DEC21AC104C100077837 /* 4rd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6E07DEBE1AC104C100077837 /* 4rd.jpg */; };
+		6E2B6C9B1AC0E49200167AF3 /* NotaCharacter1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E2B6C9A1AC0E49200167AF3 /* NotaCharacter1.png */; };
 		6E798D351ABB615A005A1FA3 /* HelpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E798D341ABB615A005A1FA3 /* HelpVC.swift */; };
 		6E798D371ABBC217005A1FA3 /* HelpParticleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E798D361ABBC217005A1FA3 /* HelpParticleVC.swift */; };
 		6E798D391ABBC27B005A1FA3 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6E798D381ABBC272005A1FA3 /* Roboto-Thin.ttf */; };
@@ -40,10 +41,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6E535A5C1ABBDD1B0057E491 /* 1st.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1st.jpg; sourceTree = SOURCE_ROOT; };
-		6E535A5D1ABBDD1B0057E491 /* 2nd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2nd.jpg; sourceTree = SOURCE_ROOT; };
-		6E535A5E1ABBDD1B0057E491 /* 3rd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3rd.jpg; sourceTree = SOURCE_ROOT; };
-		6E535A5F1ABBDD1B0057E491 /* 4rd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4rd.jpg; sourceTree = SOURCE_ROOT; };
+		6E07DEBB1AC104C100077837 /* 1st.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 1st.jpg; path = "../../Imagine Cup Sketches/1st.jpg"; sourceTree = "<group>"; };
+		6E07DEBC1AC104C100077837 /* 2nd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 2nd.jpg; path = "../../Imagine Cup Sketches/2nd.jpg"; sourceTree = "<group>"; };
+		6E07DEBD1AC104C100077837 /* 3rd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 3rd.jpg; path = "../../Imagine Cup Sketches/3rd.jpg"; sourceTree = "<group>"; };
+		6E07DEBE1AC104C100077837 /* 4rd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 4rd.jpg; path = "../../Imagine Cup Sketches/4rd.jpg"; sourceTree = "<group>"; };
+		6E2B6C9A1AC0E49200167AF3 /* NotaCharacter1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NotaCharacter1.png; sourceTree = SOURCE_ROOT; };
 		6E798D341ABB615A005A1FA3 /* HelpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpVC.swift; sourceTree = "<group>"; };
 		6E798D361ABBC217005A1FA3 /* HelpParticleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpParticleVC.swift; sourceTree = "<group>"; };
 		6E798D381ABBC272005A1FA3 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = SOURCE_ROOT; };
@@ -87,10 +89,10 @@
 		6E535A5B1ABBDD100057E491 /* Samples */ = {
 			isa = PBXGroup;
 			children = (
-				6E535A5C1ABBDD1B0057E491 /* 1st.jpg */,
-				6E535A5D1ABBDD1B0057E491 /* 2nd.jpg */,
-				6E535A5E1ABBDD1B0057E491 /* 3rd.jpg */,
-				6E535A5F1ABBDD1B0057E491 /* 4rd.jpg */,
+				6E07DEBB1AC104C100077837 /* 1st.jpg */,
+				6E07DEBC1AC104C100077837 /* 2nd.jpg */,
+				6E07DEBD1AC104C100077837 /* 3rd.jpg */,
+				6E07DEBE1AC104C100077837 /* 4rd.jpg */,
 			);
 			name = Samples;
 			sourceTree = "<group>";
@@ -127,6 +129,7 @@
 				6E535A5B1ABBDD100057E491 /* Samples */,
 				6E798D311ABB5EA7005A1FA3 /* Fonts */,
 				6EE78B141A915EAD00170FB6 /* Camera.png */,
+				6E2B6C9A1AC0E49200167AF3 /* NotaCharacter1.png */,
 				6EE78B161A915EB200170FB6 /* DoeNota.png */,
 				6EE78AD51A8D71BF00170FB6 /* AppDelegate.swift */,
 				6EE78AF81A8D84D500170FB6 /* MainPageVC.swift */,
@@ -219,6 +222,7 @@
 				TargetAttributes = {
 					6EE78ACF1A8D71BF00170FB6 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = A856ZT7H5D;
 					};
 					6EE78AE71A8D71BF00170FB6 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -250,16 +254,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E535A631ABBDD1B0057E491 /* 4rd.jpg in Resources */,
+				6E2B6C9B1AC0E49200167AF3 /* NotaCharacter1.png in Resources */,
 				6EE78AE31A8D71BF00170FB6 /* LaunchScreen.xib in Resources */,
 				6EE78B1E1A923C7A00170FB6 /* Main.storyboard in Resources */,
-				6E535A611ABBDD1B0057E491 /* 2nd.jpg in Resources */,
-				6E535A621ABBDD1B0057E491 /* 3rd.jpg in Resources */,
+				6E07DEC01AC104C100077837 /* 2nd.jpg in Resources */,
 				6E798D391ABBC27B005A1FA3 /* Roboto-Thin.ttf in Resources */,
-				6E535A601ABBDD1B0057E491 /* 1st.jpg in Resources */,
 				6EE78B151A915EAD00170FB6 /* Camera.png in Resources */,
 				6EE78AE01A8D71BF00170FB6 /* Images.xcassets in Resources */,
+				6E07DEBF1AC104C100077837 /* 1st.jpg in Resources */,
 				6EE78B171A915EB200170FB6 /* DoeNota.png in Resources */,
+				6E07DEC21AC104C100077837 /* 4rd.jpg in Resources */,
+				6E07DEC11AC104C100077837 /* 3rd.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,9 +414,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = DoeNota/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -421,9 +429,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = DoeNota/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

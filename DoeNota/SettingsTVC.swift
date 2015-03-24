@@ -23,9 +23,9 @@ class SettingsTVC: UITableViewController, UIPickerViewDelegate {
         margin = UIView(frame: CGRect(x: 0, y: -0.5, width: screenSize.size.width, height: 100))
         margin.transform = CGAffineTransformMakeTranslation(0, screenSize.size.height)
         
-        institutions = [Institution(name: "Fundação Jesus", value: 1),
-            Institution(name: "Fundação Maria", value: 2),
-            Institution(name: "Fundação Bern", value: 3)]
+        institutions = [Institution(name: "Centro Infantil Boldrini - Campinas", value: 1),
+            Institution(name: "Recanto dos Velhinhos de Valinhos", value: 2),
+            Institution(name: "SOBRAPAR - Campinas", value: 3)]
         
         pickerViewRow = 0
         count = 0
@@ -90,7 +90,7 @@ class SettingsTVC: UITableViewController, UIPickerViewDelegate {
     
     // MARK: Regarding picker view delegate
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        //println(institutions[row].value)
+        DatabaseManager.sharedInstance.setInstitution(institutions[row].value)
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -128,7 +128,7 @@ class SettingsTVC: UITableViewController, UIPickerViewDelegate {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 2
+        return 4
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -149,6 +149,8 @@ class SettingsTVC: UITableViewController, UIPickerViewDelegate {
         let screenSize : CGRect = UIScreen.mainScreen().bounds
         
         var transform : CGAffineTransform = CGAffineTransformMakeTranslation(0, screenSize.size.height - 63 - pickerInst.frame.height)
+        
+        pickerInst.selectRow(DatabaseManager.sharedInstance.getInstitution() - 1, inComponent: 0, animated: false)
         
         UIView.animateWithDuration(0.6, animations: { self.pickerInst.transform = transform; self.margin.transform = transform; self.margin.alpha = 1; self.pickerInst.alpha = 1 } , completion: nil)
     }

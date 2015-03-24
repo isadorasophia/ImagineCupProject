@@ -164,14 +164,9 @@ class DatabaseManager: NSObject {
     
     func getInstitution () -> Int {
         if (!preferences.isEmpty) {
-            let institution = preferences[0].valueForKey("institution") as String
-            let answer : Int? = institution.toInt()
+            let answer = preferences[0].valueForKey("institution") as Int
             
-            if (answer != nil) {
-                return answer!
-            } else {
-                return 1
-            }
+            return answer
         } else {
             return 1
         }

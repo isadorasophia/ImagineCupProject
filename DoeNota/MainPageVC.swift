@@ -25,9 +25,16 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Ajuda", style: .Plain, target: nil, action: nil)
         
+        if (UIApplication.sharedApplication().statusBarHidden) {
+            //
+        }
+        
         // Adds the camera button
         let cameraImg = UIImage(named: "Camera")
-        let cameraFrame = CGRectMake(screenSize.width * 0.5 - 27.5, screenSize.height - 118, 55, 55)
+        var cameraFrame : CGRect
+        
+        cameraFrame = CGRectMake(screenSize.width * 0.5 - 27.5, screenSize.height - 118 - UIApplication.sharedApplication().statusBarFrame.height + 20, 55, 55)
+        
         var cameraButton = UIButton(frame: cameraFrame)
         cameraButton.setImage(cameraImg, forState: UIControlState.Normal)
         cameraButton.setImage(cameraImg, forState: UIControlState.Highlighted)
