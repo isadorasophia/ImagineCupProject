@@ -141,12 +141,12 @@
 				6EAA520A1A938A2600E68B74 /* DatabaseManager.swift */,
 				6EE78AFA1A8D895E00170FB6 /* ServerConnection.swift */,
 				6EE78AFC1A8D8A1C00170FB6 /* ImageProcessor.swift */,
+				6E5D008F1AC21B1A0044E947 /* NonSelectableUTV.swift */,
 				6EE78B1C1A923C7A00170FB6 /* Main.storyboard */,
 				6EE78ADF1A8D71BF00170FB6 /* Images.xcassets */,
 				6EE78AE11A8D71BF00170FB6 /* LaunchScreen.xib */,
 				6EE78AD71A8D71BF00170FB6 /* DoeNota.xcdatamodeld */,
 				6EE78AD31A8D71BF00170FB6 /* Supporting Files */,
-				6E5D008F1AC21B1A0044E947 /* NonSelectableUTV.swift */,
 			);
 			path = DoeNota;
 			sourceTree = "<group>";

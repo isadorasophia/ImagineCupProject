@@ -67,15 +67,15 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         // Let user know about the status
         var aboutNotas = NonSelectableUTV(frame: CGRectMake(0, UIApplication.sharedApplication().statusBarFrame.origin.y + UIApplication.sharedApplication().statusBarFrame.height - 22, screenSize.size.width, screenSize.size.height/20 * 0.9))
         
-        aboutNotas.backgroundColor = UIColor(red: 197/255, green: 171/255, blue: 202/255, alpha: 0.5)
-        aboutNotas.textColor = UIColor(red: 154/255, green: 126/255, blue: 158/255, alpha: 1)
+        aboutNotas.backgroundColor = UIColor(red: 197/255, green: 171/255, blue: 202/255, alpha: 0.35)
+        aboutNotas.textColor = UIColor(red: 128/255, green: 104/255, blue: 131/255, alpha: 1)
         aboutNotas.textAlignment = NSTextAlignment.Center
         aboutNotas.font = UIFont(name: "Roboto-Thin", size: screenSize.size.height/20 * 0.9 * 0.45)
         
         aboutNotas.editable = false
         aboutNotas.userInteractionEnabled = false
         
-        aboutNotas.text = "Ainda faltam 2 notas para serem enviadas!"
+        aboutNotas.text = "Ainda falta enviar \(DatabaseManager.sharedInstance.totalPhotos()) nota(s)!"
         self.view.addSubview(aboutNotas)
         
         // Loads buttons actions

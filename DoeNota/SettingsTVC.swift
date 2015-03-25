@@ -162,15 +162,37 @@ class SettingsTVC: UITableViewController, UIPickerViewDelegate {
             pickerInst.hidden = false
             
             animationPickerViewAppear()
+        } else {
+            animationPickerViewGone()
         }
-        else if (indexPath.row != 1) {
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        }
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        if (indexPath.row == pickerViewRow) {
-            animationPickerViewGone()
+        
+    }
+    
+    override func tableView(tableView: UITableView, shouldShowMenuForRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if (indexPath.row == tableView.numberOfRowsInSection(0) - 1) {
+            return true
+        }
+        
+        return false
+    }
+    
+    override func tableView(tableView: UITableView, canPerformAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject) -> Bool {
+        if (indexPath.row == tableView.numberOfRowsInSection(0) - 1) {
+            return (action == Selector("copy:"))
+        }
+        
+        return false
+    }
+    
+    override func tableView(tableView: UITableView, performAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) {
+        if (action == Selector("copy:") && indexPath.row == tableView.numberOfRowsInSection(0) - 1) {
+            var pasteboard : UIPasteboard = UIPasteboard.generalPasteboard()
+            pasteboard.string = "doenotafiscal@gmail.com"
         }
     }
     
