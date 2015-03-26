@@ -22,22 +22,27 @@ class ImageProcessor: NSObject {
         return Static.instance!
     }
     
-    class func processImage (image: UIImage) -> UIImage {
+    class func processImage (var image: UIImage!) -> UIImage {
+        // Always make sure the image is on vertical
+        if (image.size.height < image.size.width) {
+            image = UIImage(CGImage: image.CGImage, scale: image.scale, orientation: UIImageOrientation.Left)
+        }
+        
         var actualHeight = image.size.height;
         var actualWidth = image.size.width;
         var imgRatio = actualWidth/actualHeight;
-        var maxRatio : CGFloat = 1280.0/1920.0;
+        var maxRatio : CGFloat = 960.0/1440.0;
         
         if (imgRatio != maxRatio) {
             if (imgRatio < maxRatio) {
-                imgRatio = 1920.0 / actualHeight;
+                imgRatio = 1440.0 / actualHeight;
                 actualWidth = imgRatio * actualWidth;
-                actualHeight = 1920.0;
+                actualHeight = 1440.0;
             }
             else {
-                imgRatio = 1280.0 / actualWidth;
+                imgRatio = 960.0 / actualWidth;
                 actualHeight = imgRatio * actualHeight;
-                actualWidth = 1280.0;
+                actualWidth = 960.0;
             }
         }
         

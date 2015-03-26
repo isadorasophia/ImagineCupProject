@@ -11,6 +11,8 @@ import UIKit
 class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var Settings: UIBarButtonItem!
     
+    var aboutNotas : NonSelectableUTV? = nil
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -20,6 +22,7 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        DatabaseManager.sharedInstance.getSet()
         
         let screenSize : CGRect = UIScreen.mainScreen().bounds
         
@@ -65,21 +68,50 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         self.navigationItem.titleView = titleView
         
         // Let user know about the status
-        var aboutNotas = NonSelectableUTV(frame: CGRectMake(0, UIApplication.sharedApplication().statusBarFrame.origin.y + UIApplication.sharedApplication().statusBarFrame.height - 22, screenSize.size.width, screenSize.size.height/20 * 0.9))
+        aboutNotas = NonSelectableUTV(frame: CGRectMake(0, UIApplication.sharedApplication().statusBarFrame.origin.y + UIApplication.sharedApplication().statusBarFrame.height - 22, screenSize.size.width, screenSize.size.height/20 * 0.9))
         
-        aboutNotas.backgroundColor = UIColor(red: 197/255, green: 171/255, blue: 202/255, alpha: 0.35)
-        aboutNotas.textColor = UIColor(red: 128/255, green: 104/255, blue: 131/255, alpha: 1)
-        aboutNotas.textAlignment = NSTextAlignment.Center
-        aboutNotas.font = UIFont(name: "Roboto-Thin", size: screenSize.size.height/20 * 0.9 * 0.45)
+        aboutNotas!.backgroundColor = UIColor(red: 197/255, green: 171/255, blue: 202/255, alpha: 0.35)
+        aboutNotas!.textColor = UIColor(red: 128/255, green: 104/255, blue: 131/255, alpha: 1)
+        aboutNotas!.textAlignment = NSTextAlignment.Center
+        aboutNotas!.font = UIFont(name: "Roboto-Thin", size: screenSize.size.height/20 * 0.9 * 0.45)
         
-        aboutNotas.editable = false
-        aboutNotas.userInteractionEnabled = false
+        aboutNotas!.editable = false
+        aboutNotas!.userInteractionEnabled = false
         
-        aboutNotas.text = "Ainda falta enviar \(DatabaseManager.sharedInstance.totalPhotos()) nota(s)!"
-        self.view.addSubview(aboutNotas)
+        self.updateNotas()
+        self.view.addSubview(aboutNotas!)
         
         // Loads buttons actions
         Settings.action = "ButtonClicked:"
+        
+        // Add observer for internet
+        let reachability = Reachability.reachabilityForInternetConnection()
+        
+        self.reachabilityChanged(nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: ReachabilityChangedNotification, object: reachability)
+        
+        reachability.startNotifier()
+    }
+    
+    func reachabilityChanged(note: NSNotification?) {
+        let reachability = Reachability.reachabilityForInternetConnection()
+        
+        if (DatabaseManager.sharedInstance.totalPhotos() > 0 && reachability.isReachable()) {
+            if ((reachability.isReachableViaWWAN() && DatabaseManager.sharedInstance.getHability3G()) || reachability.isReachableViaWiFi()) {
+                while (((reachability.isReachableViaWWAN() && DatabaseManager.sharedInstance.getHability3G()) || reachability.isReachableViaWiFi())
+                    && DatabaseManager.sharedInstance.totalPhotos() > 0) {
+                    let image = DatabaseManager.sharedInstance.getImage(DatabaseManager.sharedInstance.getNext())
+                    let id = DatabaseManager.sharedInstance.getId(DatabaseManager.sharedInstance.getNext())
+                    let institution = DatabaseManager.sharedInstance.getInstitution(DatabaseManager.sharedInstance.getNext())
+                    
+                    ServerConnection.sendToServer(image, user: "1", institution: institution, id: id)
+                        
+                    // TODO: check if it succeeded
+                    DatabaseManager.sharedInstance.deleteNextPhoto()
+                }
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -135,12 +167,30 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         let finalImg = ImageProcessor.processImage(image)
         let convertedImage : NSData = UIImageJPEGRepresentation(finalImg, 0.70)
         
-        ServerConnection.sendToServer(convertedImage, user: "1", institution: DatabaseManager.sharedInstance.getInstitution(), id: "IOS " + DatabaseManager.sharedInstance.userID())
+        let reachability = Reachability.reachabilityForInternetConnection()
+        let institution = DatabaseManager.sharedInstance.getInstitution()
+        let id = "IOS " + DatabaseManager.sharedInstance.userID()
+        
+        if (!reachability.isReachable()) {
+            DatabaseManager.sharedInstance.savePhoto(convertedImage, institution: institution, user: "1", id: id)
+            
+            self.updateNotas()
+        } else if ((reachability.isReachableViaWWAN() && DatabaseManager.sharedInstance.getHability3G()) || reachability.isReachableViaWiFi()) {
+            ServerConnection.sendToServer(convertedImage, user: "1", institution: institution, id: id)
+        }
         
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         picker.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func updateNotas () {
+        if (DatabaseManager.sharedInstance.totalPhotos() > 0) {
+            aboutNotas!.text = "Ainda falta enviar \(DatabaseManager.sharedInstance.totalPhotos()) nota(s)!"
+        } else {
+            aboutNotas!.text = "Não há notas para serem enviadas."
+        }
     }
 }

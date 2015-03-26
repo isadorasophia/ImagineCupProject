@@ -35,6 +35,7 @@ class DatabaseManager: NSObject {
         var fetchRequest = NSFetchRequest (entityName:"Nota")
         var fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]?
         
+        // Not fectching correctly! Error being made! FIX THIS
         if let results = fetchedResults {
            notas = results
         }
@@ -63,7 +64,7 @@ class DatabaseManager: NSObject {
     }
     
     // Regarging notas database
-    func savePhoto(image: NSData, institution: NSString, user: NSString) {
+    func savePhoto(image: NSData, institution: Int, user: NSString, id: NSString) {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         
@@ -74,6 +75,7 @@ class DatabaseManager: NSObject {
         nota.setValue(institution, forKey: "institution")
         nota.setValue(user, forKey: "user")
         nota.setValue(image, forKey: "photo")
+        nota.setValue(id, forKey: "id")
         
         preferences[0].setValue(totalPhotos() + 1, forKey: "numberPhotos")
 
@@ -93,26 +95,26 @@ class DatabaseManager: NSObject {
         
         let entity =  NSEntityDescription.entityForName("Nota", inManagedObjectContext: managedContext)
         
-        managedContext.deleteObject(notas[notas.endIndex])
+        managedContext.deleteObject(notas.last!)
         notas.removeLast()
         
         managedContext.save(&error)
     }
     
     func getNext () -> NSManagedObject {
-        return notas[notas.endIndex]
+        return notas.last!
     }
     
     func getImage (object: NSManagedObject) -> NSData {
         return object.valueForKey("photo") as NSData
     }
     
-    func getUser (object: NSManagedObject) -> NSString {
-        return object.valueForKey("user") as NSString
+    func getId (object: NSManagedObject) -> NSString {
+        return object.valueForKey("id") as NSString
     }
     
-    func getInstitution (object: NSManagedObject) -> NSString {
-        return object.valueForKey("institution") as NSString
+    func getInstitution (object: NSManagedObject) -> Int {
+        return object.valueForKey("institution") as Int
     }
     
     // Regarging preferences database
@@ -141,15 +143,9 @@ class DatabaseManager: NSObject {
     func totalPhotos() -> Int {
         if (!preferences.isEmpty) {
             let preferencesInfo = preferences[0]
-            let totalCount : String = preferencesInfo.valueForKeyPath("numberPhotos") as String
-            let answer : Int? = totalCount.toInt()
+            let totalCount = preferencesInfo.valueForKeyPath("numberPhotos") as Int
             
-            if (answer != nil) {
-                return answer!
-            } else {
-                return 0
-            }
-            
+            return totalCount
         }
         else {
             return 0

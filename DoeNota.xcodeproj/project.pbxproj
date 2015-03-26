@@ -13,6 +13,7 @@
 		6E07DECA1AC119F500077837 /* 4rd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6E07DEC61AC119F500077837 /* 4rd.jpg */; };
 		6E2B6C9B1AC0E49200167AF3 /* NotaCharacter1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E2B6C9A1AC0E49200167AF3 /* NotaCharacter1.png */; };
 		6E5D00901AC21B1A0044E947 /* NonSelectableUTV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5D008F1AC21B1A0044E947 /* NonSelectableUTV.swift */; };
+		6E5D00921AC3AA360044E947 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5D00911AC3AA360044E947 /* Reachability.swift */; };
 		6E798D351ABB615A005A1FA3 /* HelpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E798D341ABB615A005A1FA3 /* HelpVC.swift */; };
 		6E798D371ABBC217005A1FA3 /* HelpParticleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E798D361ABBC217005A1FA3 /* HelpParticleVC.swift */; };
 		6E798D391ABBC27B005A1FA3 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6E798D381ABBC272005A1FA3 /* Roboto-Thin.ttf */; };
@@ -48,6 +49,7 @@
 		6E07DEC61AC119F500077837 /* 4rd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4rd.jpg; sourceTree = SOURCE_ROOT; };
 		6E2B6C9A1AC0E49200167AF3 /* NotaCharacter1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NotaCharacter1.png; sourceTree = SOURCE_ROOT; };
 		6E5D008F1AC21B1A0044E947 /* NonSelectableUTV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NonSelectableUTV.swift; sourceTree = "<group>"; };
+		6E5D00911AC3AA360044E947 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		6E798D341ABB615A005A1FA3 /* HelpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpVC.swift; sourceTree = "<group>"; };
 		6E798D361ABBC217005A1FA3 /* HelpParticleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpParticleVC.swift; sourceTree = "<group>"; };
 		6E798D381ABBC272005A1FA3 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = SOURCE_ROOT; };
@@ -142,6 +144,7 @@
 				6EE78AFA1A8D895E00170FB6 /* ServerConnection.swift */,
 				6EE78AFC1A8D8A1C00170FB6 /* ImageProcessor.swift */,
 				6E5D008F1AC21B1A0044E947 /* NonSelectableUTV.swift */,
+				6E5D00911AC3AA360044E947 /* Reachability.swift */,
 				6EE78B1C1A923C7A00170FB6 /* Main.storyboard */,
 				6EE78ADF1A8D71BF00170FB6 /* Images.xcassets */,
 				6EE78AE11A8D71BF00170FB6 /* LaunchScreen.xib */,
@@ -292,6 +295,7 @@
 				6EE78AFB1A8D895E00170FB6 /* ServerConnection.swift in Sources */,
 				6E798D371ABBC217005A1FA3 /* HelpParticleVC.swift in Sources */,
 				6EE78AFD1A8D8A1C00170FB6 /* ImageProcessor.swift in Sources */,
+				6E5D00921AC3AA360044E947 /* Reachability.swift in Sources */,
 				6EE78B1B1A9192FA00170FB6 /* SettingsTVC.swift in Sources */,
 				6EE78AD61A8D71BF00170FB6 /* AppDelegate.swift in Sources */,
 				6E5D00901AC21B1A0044E947 /* NonSelectableUTV.swift in Sources */,
