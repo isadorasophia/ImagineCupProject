@@ -66,6 +66,7 @@
                         <outlet property="Settings" destination="xVI-gJ-pgP" id="J3R-U7-Rha"/>
                         <segue destination="LKu-M9-cAI" kind="show" identifier="ToSettings" id="da5-TJ-N0p"/>
                         <segue destination="oh6-9s-fdQ" kind="show" identifier="ToHelp" id="poO-c3-bfd"/>
+                        <segue destination="6Li-QU-rk2" kind="show" identifier="ToSuccess" id="HcQ-X5-0LO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -190,6 +191,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XHi-x0-lVZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1131" y="449"/>
+        </scene>
+        <!--SuccessVC-->
+        <scene sceneID="m4S-HL-5B1">
+            <objects>
+                <viewController storyboardIdentifier="Success" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6Li-QU-rk2" customClass="SuccessVC" customModule="DoeNota" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hCF-99-15U"/>
+                        <viewControllerLayoutGuide type="bottom" id="ilX-8V-Gkg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3aP-hu-mWj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Ug-Le-7OO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1810" y="449"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="BLb-8V-AwW">

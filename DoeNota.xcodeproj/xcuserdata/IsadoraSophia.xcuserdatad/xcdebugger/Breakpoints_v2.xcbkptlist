@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoeNota/DatabaseManager.swift"
-            timestampString = "449125408.147649"
+            timestampString = "449187229.902053"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
             landmarkName = "getHability3G()"
             landmarkType = "5">
          </BreakpointContent>
@@ -186,7 +186,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoeNota/SettingsTVC.swift"
-            timestampString = "449126601.691731"
+            timestampString = "449191412.2758"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
@@ -278,7 +278,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoeNota/SettingsTVC.swift"
-            timestampString = "449126601.691731"
+            timestampString = "449191412.2758"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "226"
@@ -294,7 +294,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoeNota/SettingsTVC.swift"
-            timestampString = "449126601.691731"
+            timestampString = "449191412.2758"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "82"
@@ -310,7 +310,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoeNota/SettingsTVC.swift"
-            timestampString = "449126601.691731"
+            timestampString = "449191412.2758"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "83"
@@ -326,11 +326,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoeNota/HelpParticleVC.swift"
-            timestampString = "448857399.30336"
+            timestampString = "449187229.902053"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "HelpParticleVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -342,27 +342,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoeNota/HelpParticleVC.swift"
-            timestampString = "448857399.30336"
+            timestampString = "449187229.902053"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "HelpParticleVC"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoeNota/HelpParticleVC.swift"
+            timestampString = "449187229.902053"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "49"
             endingLineNumber = "49"
-            landmarkName = "HelpParticleVC"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DoeNota/HelpParticleVC.swift"
-            timestampString = "448857399.30336"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
             landmarkName = "HelpParticleVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -406,11 +406,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoeNota/HelpVC.swift"
-            timestampString = "448862016.795152"
+            timestampString = "449188634.322311"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "viewControllerAtIndex(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -422,11 +422,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoeNota/DatabaseManager.swift"
-            timestampString = "449125408.147649"
+            timestampString = "449187229.902053"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
             landmarkName = "getInstitution()"
             landmarkType = "5">
          </BreakpointContent>
@@ -438,11 +438,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoeNota/HelpParticleVC.swift"
-            timestampString = "448857320.176509"
+            timestampString = "449187229.902053"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
             <Locations>
@@ -484,7 +484,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoeNota/SettingsTVC.swift"
-            timestampString = "449126601.691731"
+            timestampString = "449191412.2758"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "148"
@@ -532,7 +532,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoeNota/SettingsTVC.swift"
-            timestampString = "449126601.691731"
+            timestampString = "449191412.2758"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "217"
@@ -548,11 +548,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoeNota/MainPageVC.swift"
-            timestampString = "449126601.691731"
+            timestampString = "449191895.530734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
             landmarkName = "MainPageVC"
             landmarkType = "3">
          </BreakpointContent>

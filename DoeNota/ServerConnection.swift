@@ -61,7 +61,7 @@ class ServerConnection: NSObject, NSURLConnectionDelegate, NSXMLParserDelegate {
                     if (response.statusCode == 200) {
                         DatabaseManager.sharedInstance.deleteNextPhoto()
                         
-                        NSNotificationCenter.defaultCenter().postNotificationName(NotaSent, object:self)
+                        NSNotificationCenter.defaultCenter().postNotificationName(NotaSent, object: self)
                     }
                 }
             } else {
@@ -72,7 +72,7 @@ class ServerConnection: NSObject, NSURLConnectionDelegate, NSXMLParserDelegate {
         //task.resume()
         
         // This is temp!
-        NSNotificationCenter.defaultCenter().postNotificationName(NotaSent, object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName(NotaSent, object: self)
         DatabaseManager.sharedInstance.deleteNextPhoto()
         
         return true

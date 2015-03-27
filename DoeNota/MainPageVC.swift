@@ -92,9 +92,9 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: ReachabilityChangedNotification, object: reachability)
         reachability.startNotifier()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: changedSettings, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: ChangedSettings, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateNotas:", name: NotaSent, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateNotas:", name: NotaSent, object: ServerConnection())
     }
     
     func reachabilityChanged(note: NSNotification?) {
@@ -187,6 +187,8 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         }
         
         picker.dismissViewControllerAnimated(true, completion: nil)
+        
+        performSegueWithIdentifier("ToSuccess", sender: nil)
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {

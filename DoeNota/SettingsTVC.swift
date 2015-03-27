@@ -8,7 +8,7 @@
 
 import UIKit
 
-let changedSettings = "changedSettings"
+let ChangedSettings = "ChangedSettings"
 
 struct Institution {
     var name: String
@@ -105,7 +105,7 @@ class SettingsTVC: UITableViewController, UIPickerViewDelegate {
         if (sender.on) {
             DatabaseManager.sharedInstance.set3G(true)
             
-            NSNotificationCenter.defaultCenter().postNotificationName(changedSettings, object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName(ChangedSettings, object: self)
         } else {
             DatabaseManager.sharedInstance.set3G(false)
         }
