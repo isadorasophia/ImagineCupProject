@@ -8,6 +8,8 @@
 
 import UIKit
 
+let changedSettings = "changedSettings"
+
 struct Institution {
     var name: String
     var value: Int
@@ -31,6 +33,25 @@ class SettingsTVC: UITableViewController, UIPickerViewDelegate {
         count = 0
         
         super.init(coder: aDecoder)
+    }
+    
+    override init() {
+        let screenSize : CGRect = UIScreen.mainScreen().bounds
+        
+        pickerInst = UIPickerView(frame: CGRect(x: 0, y: 0, width: screenSize.size.width, height: screenSize.size.height/2))
+        pickerInst.transform = CGAffineTransformMakeTranslation(0, screenSize.size.height)
+        
+        margin = UIView(frame: CGRect(x: 0, y: -0.5, width: screenSize.size.width, height: 100))
+        margin.transform = CGAffineTransformMakeTranslation(0, screenSize.size.height)
+        
+        institutions = [Institution(name: "Centro Infantil Boldrini - Campinas", value: 1),
+            Institution(name: "Recanto dos Velhinhos de Valinhos", value: 2),
+            Institution(name: "SOBRAPAR - Campinas", value: 3)]
+        
+        pickerViewRow = 0
+        count = 0
+        
+        super.init()
     }
     
     @IBOutlet weak var wifiButton: UISwitch!
@@ -83,6 +104,8 @@ class SettingsTVC: UITableViewController, UIPickerViewDelegate {
     func set3GOptions (sender: UISwitch!) {
         if (sender.on) {
             DatabaseManager.sharedInstance.set3G(true)
+            
+            NSNotificationCenter.defaultCenter().postNotificationName(changedSettings, object: nil)
         } else {
             DatabaseManager.sharedInstance.set3G(false)
         }

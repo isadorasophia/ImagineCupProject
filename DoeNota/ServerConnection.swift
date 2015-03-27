@@ -70,7 +70,9 @@ class ServerConnection: NSObject, NSURLConnectionDelegate, NSXMLParserDelegate {
         } )
         
         //task.resume()
-        NSNotificationCenter.defaultCenter().postNotificationName(NotaSent, object:self)
+        
+        // This is temp!
+        NSNotificationCenter.defaultCenter().postNotificationName(NotaSent, object: nil)
         DatabaseManager.sharedInstance.deleteNextPhoto()
         
         return true

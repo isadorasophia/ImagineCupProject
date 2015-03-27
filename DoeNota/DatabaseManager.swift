@@ -105,7 +105,6 @@ class DatabaseManager: NSObject {
         }
     }
     
-    // TODO! reading a nil (notas is empty, apparently...)
     func getNext () -> NSManagedObject {
         return notas.last!
     }

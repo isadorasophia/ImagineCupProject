@@ -92,7 +92,9 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: ReachabilityChangedNotification, object: reachability)
         reachability.startNotifier()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateNotas:", name: NotaSent, object: ServerConnection())
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: changedSettings, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateNotas:", name: NotaSent, object: nil)
     }
     
     func reachabilityChanged(note: NSNotification?) {
@@ -176,12 +178,12 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         let institution = DatabaseManager.sharedInstance.getInstitution()
         let id = "IOS " + DatabaseManager.sharedInstance.userID()
         
-        if (!reachability.isReachable()) {
+        if ((reachability.isReachableViaWWAN() && DatabaseManager.sharedInstance.getHability3G()) || reachability.isReachableViaWiFi()) {
+            ServerConnection.sendToServer(convertedImage, user: "1", institution: institution, id: id)
+        } else {
             DatabaseManager.sharedInstance.savePhoto(convertedImage, institution: institution, user: "1", id: id)
             
             self.updateNotas()
-        } else if ((reachability.isReachableViaWWAN() && DatabaseManager.sharedInstance.getHability3G()) || reachability.isReachableViaWiFi()) {
-            ServerConnection.sendToServer(convertedImage, user: "1", institution: institution, id: id)
         }
         
         picker.dismissViewControllerAnimated(true, completion: nil)
