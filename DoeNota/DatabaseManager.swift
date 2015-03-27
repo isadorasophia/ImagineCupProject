@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 
+@objc(Task)
+
 class DatabaseManager: NSObject {
     class var sharedInstance: DatabaseManager {
         struct Static {
@@ -32,12 +34,11 @@ class DatabaseManager: NSObject {
         
         var error: NSError?
         
-        var fetchRequest = NSFetchRequest (entityName:"Nota")
-        var fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]?
+        var fetchRequest = NSFetchRequest (entityName: "Nota")
+        var fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]!
         
-        // Not fectching correctly! Error being made! FIX THIS
         if let results = fetchedResults {
-           notas = results
+            self.notas = results
         }
         
         fetchRequest = NSFetchRequest (entityName: "Preferences")
@@ -68,9 +69,9 @@ class DatabaseManager: NSObject {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         
-        let entity =  NSEntityDescription.entityForName("Nota", inManagedObjectContext: managedContext)
+        let entity = NSEntityDescription.entityForName("Nota", inManagedObjectContext: managedContext)
         
-        let nota = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
+        let nota = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
         
         nota.setValue(institution, forKey: "institution")
         nota.setValue(user, forKey: "user")
@@ -80,11 +81,10 @@ class DatabaseManager: NSObject {
         preferences[0].setValue(totalPhotos() + 1, forKey: "numberPhotos")
 
         var error: NSError?
-        if !managedContext.save(&error) {
-            println("Could not save \(error), \(error?.userInfo)")
-        }
+        
+        managedContext.save(&error)
 
-        notas.append(nota)
+        self.notas.append(nota)
     }
     
     func deleteNextPhoto () {
@@ -95,12 +95,17 @@ class DatabaseManager: NSObject {
         
         let entity =  NSEntityDescription.entityForName("Nota", inManagedObjectContext: managedContext)
         
-        managedContext.deleteObject(notas.last!)
-        notas.removeLast()
+        if (!notas.isEmpty) {
+            managedContext.deleteObject(self.notas.last!)
+            self.notas.removeLast()
         
-        managedContext.save(&error)
+            preferences[0].setValue(totalPhotos() - 1, forKey: "numberPhotos")
+        
+            managedContext.save(&error)
+        }
     }
     
+    // TODO! reading a nil (notas is empty, apparently...)
     func getNext () -> NSManagedObject {
         return notas.last!
     }

@@ -90,28 +90,33 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         self.reachabilityChanged(nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: ReachabilityChangedNotification, object: reachability)
-        
         reachability.startNotifier()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateNotas:", name: NotaSent, object: ServerConnection())
     }
     
     func reachabilityChanged(note: NSNotification?) {
         let reachability = Reachability.reachabilityForInternetConnection()
         
-        if (DatabaseManager.sharedInstance.totalPhotos() > 0 && reachability.isReachable()) {
+        let notasDB = DatabaseManager.sharedInstance.totalPhotos()
+        var counter : Int
+        
+        if (notasDB > 0 && reachability.isReachable()) {
+            counter = notasDB
+            
             if ((reachability.isReachableViaWWAN() && DatabaseManager.sharedInstance.getHability3G()) || reachability.isReachableViaWiFi()) {
                 while (((reachability.isReachableViaWWAN() && DatabaseManager.sharedInstance.getHability3G()) || reachability.isReachableViaWiFi())
-                    && DatabaseManager.sharedInstance.totalPhotos() > 0) {
+                    && counter-- > 0) {
                     let image = DatabaseManager.sharedInstance.getImage(DatabaseManager.sharedInstance.getNext())
                     let id = DatabaseManager.sharedInstance.getId(DatabaseManager.sharedInstance.getNext())
                     let institution = DatabaseManager.sharedInstance.getInstitution(DatabaseManager.sharedInstance.getNext())
                     
                     ServerConnection.sendToServer(image, user: "1", institution: institution, id: id)
-                        
-                    // TODO: check if it succeeded
-                    DatabaseManager.sharedInstance.deleteNextPhoto()
                 }
             }
         }
+        
+        self.updateNotas()
     }
 
     override func didReceiveMemoryWarning() {

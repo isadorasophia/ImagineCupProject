@@ -8,6 +8,8 @@
 
 import UIKit
 
+let NotaSent = "NotaSent"
+
 class ServerConnection: NSObject, NSURLConnectionDelegate, NSXMLParserDelegate {
     class var sharedInstance: ServerConnection {
         struct Static {
@@ -34,8 +36,18 @@ class ServerConnection: NSObject, NSURLConnectionDelegate, NSXMLParserDelegate {
         let urlString = "http://lampiao.ic.unicamp.br:8085/WebServiceNotaFiscal/webservices/NotaFiscalImplementation?wsdl"
         let url = NSURL(string: urlString)
         
-        var request = NSMutableURLRequest(URL: url!)
+        let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         
+        if (DatabaseManager.sharedInstance.getHability3G()) {
+            sessionConfiguration.allowsCellularAccess = true
+        } else {
+            sessionConfiguration.allowsCellularAccess = false
+        }
+        
+        var session = NSURLSession(configuration: sessionConfiguration)
+        
+        var request = NSMutableURLRequest(URL: url!)
+
         var msgLength = String(countElements(parameters))
         
         request.addValue("text/xml; charset=utf-8", forHTTPHeaderField: "Content-Type")
@@ -43,9 +55,23 @@ class ServerConnection: NSObject, NSURLConnectionDelegate, NSXMLParserDelegate {
         request.HTTPMethod = "POST"
         request.HTTPBody = parameters.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
         
-        //var connection = NSURLConnection(request: request, delegate: self, startImmediately: true)
+        let task = session.dataTaskWithRequest(request, completionHandler: {(data, urlResponse, error) in
+            if (data != nil) {
+                if let response = urlResponse as? NSHTTPURLResponse {
+                    if (response.statusCode == 200) {
+                        DatabaseManager.sharedInstance.deleteNextPhoto()
+                        
+                        NSNotificationCenter.defaultCenter().postNotificationName(NotaSent, object:self)
+                    }
+                }
+            } else {
+                // Error occurred
+            }
+        } )
         
-        //connection?.start()
+        //task.resume()
+        NSNotificationCenter.defaultCenter().postNotificationName(NotaSent, object:self)
+        DatabaseManager.sharedInstance.deleteNextPhoto()
         
         return true
     }
