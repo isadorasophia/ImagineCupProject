@@ -12,6 +12,7 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     @IBOutlet weak var Settings: UIBarButtonItem!
     
     var aboutNotas : NonSelectableUTV? = nil
+    let serverConnection : ServerConnection = ServerConnection()
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -94,7 +95,7 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: ChangedSettings, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateNotas:", name: NotaSent, object: ServerConnection())
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "notaJustSent:", name: Test, object: serverConnection)
     }
     
     func reachabilityChanged(note: NSNotification?) {
@@ -113,7 +114,7 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
                     let id = DatabaseManager.sharedInstance.getId(DatabaseManager.sharedInstance.getNext())
                     let institution = DatabaseManager.sharedInstance.getInstitution(DatabaseManager.sharedInstance.getNext())
                     
-                    ServerConnection.sendToServer(image, user: "1", institution: institution, id: id)
+                    serverConnection.sendToServer(image, user: "1", institution: institution, id: id)
                 }
             }
         }
@@ -171,7 +172,7 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     
     // Image delegate, picks the image in order to process it and send to server
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        let finalImg = ImageProcessor.processImage(image)
+        let finalImg = ImageProcessor.sharedInstance.processImage(image)
         let convertedImage : NSData = UIImageJPEGRepresentation(finalImg, 0.70)
         
         let reachability = Reachability.reachabilityForInternetConnection()
@@ -179,7 +180,7 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         let id = "IOS " + DatabaseManager.sharedInstance.userID()
         
         if ((reachability.isReachableViaWWAN() && DatabaseManager.sharedInstance.getHability3G()) || reachability.isReachableViaWiFi()) {
-            ServerConnection.sendToServer(convertedImage, user: "1", institution: institution, id: id)
+            serverConnection.sendToServer(convertedImage, user: "1", institution: institution, id: id)
         } else {
             DatabaseManager.sharedInstance.savePhoto(convertedImage, institution: institution, user: "1", id: id)
             
@@ -188,7 +189,7 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         
         picker.dismissViewControllerAnimated(true, completion: nil)
         
-        performSegueWithIdentifier("ToSuccess", sender: nil)
+        //performSegueWithIdentifier("ToSuccess", sender: nil)
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
@@ -201,5 +202,29 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         } else {
             aboutNotas!.text = "Não há notas para serem enviadas."
         }
+    }
+    
+    func notaJustSent (note: NSNotification) {
+        let screenSize : CGRect = UIScreen.mainScreen().bounds
+
+        let sent = NonSelectableUTV(frame: CGRectMake(0, screenSize.size.height/2 - screenSize.size.height/10, screenSize.size.width, screenSize.size.height/20))
+        sent.textAlignment = NSTextAlignment.Center
+        sent.font = UIFont(name: "Roboto-Thin", size: screenSize.size.height/20 * 0.9 * 0.6)
+        sent.textColor = UIColor(red: 128/255, green: 104/255, blue: 131/255, alpha: 1)
+        sent.text = "Enviado!"
+        sent.alpha = 0
+        
+        self.view.addSubview(sent)
+        
+        UIView.animateWithDuration(1.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations:  { () -> Void in
+            sent.alpha = 1.0
+            }, completion:  { (finished: Bool) -> Void in
+                // Fade out
+                UIView.animateWithDuration(1.0, delay: 1, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                    sent.alpha = 0
+                    }, completion: nil)
+        })
+        
+        self.updateNotas()
     }
 }

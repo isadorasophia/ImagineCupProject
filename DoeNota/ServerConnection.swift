@@ -8,23 +8,23 @@
 
 import UIKit
 
-let NotaSent = "NotaSent"
+let Test = "Test"
 
 class ServerConnection: NSObject, NSURLConnectionDelegate, NSXMLParserDelegate {
-    class var sharedInstance: ServerConnection {
-        struct Static {
-            static var instance: ServerConnection?
-            static var token: dispatch_once_t = 0
-        }
-        
-        dispatch_once(&Static.token) {
-            Static.instance = ServerConnection()
-        }
-        
-        return Static.instance!
-    }
+    //class var sharedInstance: ServerConnection {
+    //    struct Static {
+    //        static var instance: ServerConnection?
+    //        static var token: dispatch_once_t = 0
+    //    }
+    //
+    //    dispatch_once(&Static.token) {
+    //        Static.instance = ServerConnection()
+    //    }
+    //
+    //    return Static.instance!
+    //}
     
-    class func sendToServer (imageData: NSData, user: NSString, institution: Int, id: String) -> Bool {
+    func sendToServer (imageData: NSData, user: NSString, institution: Int, id: String) -> Bool {
         var imageBase64 = imageData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding76CharacterLineLength)
         
         var head = "<?xml version='1.0' encoding='utf-8'?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:not=\"http://lampiao.ic.unicamp.br:8085/WebServiceNotaFiscal/webservices/NotaFiscalImplementation?wsdl\">\n"
@@ -54,26 +54,27 @@ class ServerConnection: NSObject, NSURLConnectionDelegate, NSXMLParserDelegate {
         request.addValue(msgLength, forHTTPHeaderField: "Content-Length")
         request.HTTPMethod = "POST"
         request.HTTPBody = parameters.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-        
+                
         let task = session.dataTaskWithRequest(request, completionHandler: {(data, urlResponse, error) in
             if (data != nil) {
                 if let response = urlResponse as? NSHTTPURLResponse {
                     if (response.statusCode == 200) {
                         DatabaseManager.sharedInstance.deleteNextPhoto()
                         
-                        NSNotificationCenter.defaultCenter().postNotificationName(NotaSent, object: self)
+                        NSNotificationCenter.defaultCenter().postNotificationName(Test, object: self as ServerConnection)
                     }
                 }
             } else {
+                print("An error has occurred")
                 // Error occurred
             }
         } )
         
-        //task.resume()
+        task.resume()
         
         // This is temp!
-        NSNotificationCenter.defaultCenter().postNotificationName(NotaSent, object: self)
-        DatabaseManager.sharedInstance.deleteNextPhoto()
+        //NSNotificationCenter.defaultCenter().postNotificationName(Test, object: self)
+        //DatabaseManager.sharedInstance.deleteNextPhoto()
         
         return true
     }
@@ -85,7 +86,6 @@ class ServerConnection: NSObject, NSURLConnectionDelegate, NSXMLParserDelegate {
     class func connection(connection: NSURLConnection!, didReceiveData data: NSData!) {
         // Connection data
     }
-    
     
     class func connectionDidFinishLoading(connection: NSURLConnection!) {
         // Knows that the connection have finished
