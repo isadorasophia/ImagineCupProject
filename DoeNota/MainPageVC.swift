@@ -12,7 +12,7 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     @IBOutlet weak var Settings: UIBarButtonItem!
     
     var aboutNotas : NonSelectableUTV? = nil
-    let serverConnection : ServerConnection = ServerConnection()
+    let serverConnection : ServerConnection = ServerConnection.sharedInstance
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -90,12 +90,14 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         
         self.reachabilityChanged(nil)
         
+        self.loadMainScreen()
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: ReachabilityChangedNotification, object: reachability)
         reachability.startNotifier()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: ChangedSettings, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "notaJustSent:", name: Test, object: serverConnection)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "notaJustSent:", name: Success, object: nil)
     }
     
     func reachabilityChanged(note: NSNotification?) {
@@ -179,7 +181,7 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         let institution = DatabaseManager.sharedInstance.getInstitution()
         let id = "IOS " + DatabaseManager.sharedInstance.userID()
         
-        if ((reachability.isReachableViaWWAN() && DatabaseManager.sharedInstance.getHability3G()) || reachability.isReachableViaWiFi()) {
+        if (reachability.isReachable() && ((reachability.isReachableViaWWAN() && DatabaseManager.sharedInstance.getHability3G()) || reachability.isReachableViaWiFi())) {
             serverConnection.sendToServer(convertedImage, user: "1", institution: institution, id: id)
         } else {
             DatabaseManager.sharedInstance.savePhoto(convertedImage, institution: institution, user: "1", id: id)
@@ -204,7 +206,7 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         }
     }
     
-    func notaJustSent (note: NSNotification) {
+    func notaJustSent (note: NSNotification?) {
         let screenSize : CGRect = UIScreen.mainScreen().bounds
 
         let sent = NonSelectableUTV(frame: CGRectMake(0, screenSize.size.height/2 - screenSize.size.height/10, screenSize.size.width, screenSize.size.height/20))
@@ -226,5 +228,17 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         })
         
         self.updateNotas()
+    }
+    
+    func loadMainScreen () {
+        let screenSize : CGRect = UIScreen.mainScreen().bounds
+        
+        // Adds the help button
+        let helpImg = UIImage(named: "Question")?.imageWithColor(UIColor(red: 154/255, green: 126/255, blue: 158/255, alpha: 1))
+        let helpFrame = CGRectMake(screenSize.width/20, aboutNotas!.frame.height, screenSize.width/15, screenSize.width/15)
+    
+        var helpView : UIImageView = UIImageView(frame: helpFrame)
+        helpView.image = helpImg
+        self.view.addSubview(helpView)
     }
 }

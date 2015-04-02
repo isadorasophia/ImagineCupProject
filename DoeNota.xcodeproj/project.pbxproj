@@ -31,6 +31,7 @@
 		6EE78B171A915EB200170FB6 /* DoeNota.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EE78B161A915EB200170FB6 /* DoeNota.png */; };
 		6EE78B1B1A9192FA00170FB6 /* SettingsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE78B1A1A9192FA00170FB6 /* SettingsTVC.swift */; };
 		6EE78B1E1A923C7A00170FB6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EE78B1C1A923C7A00170FB6 /* Main.storyboard */; };
+		6EECB7851ACDDF5F00BAFA27 /* NotaCharacter2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EECB7841ACDDF5F00BAFA27 /* NotaCharacter2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		6EE78B161A915EB200170FB6 /* DoeNota.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DoeNota.png; sourceTree = SOURCE_ROOT; };
 		6EE78B1A1A9192FA00170FB6 /* SettingsTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTVC.swift; sourceTree = "<group>"; };
 		6EE78B1D1A923C7A00170FB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6EECB7841ACDDF5F00BAFA27 /* NotaCharacter2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NotaCharacter2.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 				6E798D311ABB5EA7005A1FA3 /* Fonts */,
 				6EE78B141A915EAD00170FB6 /* Camera.png */,
 				6E2B6C9A1AC0E49200167AF3 /* NotaCharacter1.png */,
+				6EECB7841ACDDF5F00BAFA27 /* NotaCharacter2.png */,
 				6EE78B161A915EB200170FB6 /* DoeNota.png */,
 				6EE78AD51A8D71BF00170FB6 /* AppDelegate.swift */,
 				6EE78AF81A8D84D500170FB6 /* MainPageVC.swift */,
@@ -269,6 +272,7 @@
 				6E5D00971AC611B90044E947 /* 1st.png in Resources */,
 				6EE78B1E1A923C7A00170FB6 /* Main.storyboard in Resources */,
 				6E798D391ABBC27B005A1FA3 /* Roboto-Thin.ttf in Resources */,
+				6EECB7851ACDDF5F00BAFA27 /* NotaCharacter2.png in Resources */,
 				6EE78B151A915EAD00170FB6 /* Camera.png in Resources */,
 				6EE78AE01A8D71BF00170FB6 /* Images.xcassets in Resources */,
 				6EE78B171A915EB200170FB6 /* DoeNota.png in Resources */,

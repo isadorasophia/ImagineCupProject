@@ -8,21 +8,21 @@
 
 import UIKit
 
-let Test = "Test"
+let Success = "Success"
 
 class ServerConnection: NSObject, NSURLConnectionDelegate, NSXMLParserDelegate {
-    //class var sharedInstance: ServerConnection {
-    //    struct Static {
-    //        static var instance: ServerConnection?
-    //        static var token: dispatch_once_t = 0
-    //    }
-    //
-    //    dispatch_once(&Static.token) {
-    //        Static.instance = ServerConnection()
-    //    }
-    //
-    //    return Static.instance!
-    //}
+    class var sharedInstance: ServerConnection {
+        struct Static {
+            static var instance: ServerConnection?
+            static var token: dispatch_once_t = 0
+        }
+    
+        dispatch_once(&Static.token) {
+            Static.instance = ServerConnection()
+        }
+
+        return Static.instance!
+    }
     
     func sendToServer (imageData: NSData, user: NSString, institution: Int, id: String) -> Bool {
         var imageBase64 = imageData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding76CharacterLineLength)
@@ -59,9 +59,12 @@ class ServerConnection: NSObject, NSURLConnectionDelegate, NSXMLParserDelegate {
             if (data != nil) {
                 if let response = urlResponse as? NSHTTPURLResponse {
                     if (response.statusCode == 200) {
-                        DatabaseManager.sharedInstance.deleteNextPhoto()
+                        dispatch_sync(dispatch_get_main_queue())
+                        {
+                            DatabaseManager.sharedInstance.deleteNextPhoto()
                         
-                        NSNotificationCenter.defaultCenter().postNotificationName(Test, object: self as ServerConnection)
+                            NSNotificationCenter.defaultCenter().postNotificationName(Success, object: nil)
+                        }
                     }
                 }
             } else {
@@ -73,7 +76,7 @@ class ServerConnection: NSObject, NSURLConnectionDelegate, NSXMLParserDelegate {
         task.resume()
         
         // This is temp!
-        //NSNotificationCenter.defaultCenter().postNotificationName(Test, object: self)
+        //NSNotificationCenter.defaultCenter().postNotificationName(Success, object: nil)
         //DatabaseManager.sharedInstance.deleteNextPhoto()
         
         return true
