@@ -24,7 +24,7 @@ class ServerConnection: NSObject, NSURLConnectionDelegate, NSXMLParserDelegate {
         return Static.instance!
     }
     
-    func sendToServer (imageData: NSData, user: NSString, institution: Int, id: String) -> Bool {
+    func sendToServer (imageData: NSData, user: NSString, institution: Int, id: String, alreadyStored: Bool) -> Bool {
         var imageBase64 = imageData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding76CharacterLineLength)
         
         var head = "<?xml version='1.0' encoding='utf-8'?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:not=\"http://lampiao.ic.unicamp.br:8085/WebServiceNotaFiscal/webservices/NotaFiscalImplementation?wsdl\">\n"
@@ -62,13 +62,19 @@ class ServerConnection: NSObject, NSURLConnectionDelegate, NSXMLParserDelegate {
                         dispatch_sync(dispatch_get_main_queue())
                         {
                             DatabaseManager.sharedInstance.deleteNextPhoto()
+                            DatabaseManager.sharedInstance.increaseSentPhotos()
                         
                             NSNotificationCenter.defaultCenter().postNotificationName(Success, object: nil)
                         }
                     }
                 }
             } else {
-                print("An error has occurred")
+                if (!alreadyStored) {
+                    dispatch_sync(dispatch_get_main_queue())
+                    {
+                        DatabaseManager.sharedInstance.savePhoto(imageData, institution: institution, user: user, id: id)
+                    }
+                }
                 // Error occurred
             }
         } )

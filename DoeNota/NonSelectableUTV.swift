@@ -26,12 +26,20 @@ class NonSelectableUTV: UITextView {
         return super.canPerformAction(action, withSender: sender)
     }
     
+    override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
+    }
+    
     func textView(textView: UITextView, shouldInteractWithTextAttachment textAttachment: NSTextAttachment, inRange characterRange: NSRange) -> Bool {
         return false
     }
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         return false
+    }
+    
+    override func scrollRectToVisible(rect: CGRect, animated: Bool) {
+        //
     }
     
     /*

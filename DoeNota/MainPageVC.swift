@@ -14,6 +14,13 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     var aboutNotas : NonSelectableUTV? = nil
     let serverConnection : ServerConnection = ServerConnection.sharedInstance
     
+    var helpView : UIImageView? = nil
+    var helpText : NonSelectableUTV? = nil
+    var settingsView : UIImageView? = nil
+    var settingsText : NonSelectableUTV? = nil
+    var notinhaView : UIImageView? = nil
+    var notinhaText : NonSelectableUTV? = nil
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -51,9 +58,9 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         self.view.addSubview(galleryButton)
         
         // Adds the help button
-        let helpImg = UIImage(named: "Question")?.imageWithColor(UIColor(red: 154/255, green: 126/255, blue: 158/255, alpha: 1))
+        let helpNavImg = UIImage(named: "Question")?.imageWithColor(UIColor(red: 154/255, green: 126/255, blue: 158/255, alpha: 1))
         let helpFrame = CGRectMake(0, 0, 22, 22)
-        var helpButton = UIBarButtonItem(image: helpImg, style: .Plain, target: self, action: "ButtonClicked:")
+        var helpButton = UIBarButtonItem(image: helpNavImg, style: .Plain, target: self, action: "ButtonClicked:")
         self.navigationItem.rightBarButtonItem = helpButton
         
         // Sets the title
@@ -116,7 +123,7 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
                     let id = DatabaseManager.sharedInstance.getId(DatabaseManager.sharedInstance.getNext())
                     let institution = DatabaseManager.sharedInstance.getInstitution(DatabaseManager.sharedInstance.getNext())
                     
-                    serverConnection.sendToServer(image, user: "1", institution: institution, id: id)
+                    serverConnection.sendToServer(image, user: "1", institution: institution, id: id, alreadyStored: true)
                 }
             }
         }
@@ -182,7 +189,7 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         let id = "IOS " + DatabaseManager.sharedInstance.userID()
         
         if (reachability.isReachable() && ((reachability.isReachableViaWWAN() && DatabaseManager.sharedInstance.getHability3G()) || reachability.isReachableViaWiFi())) {
-            serverConnection.sendToServer(convertedImage, user: "1", institution: institution, id: id)
+            serverConnection.sendToServer(convertedImage, user: "1", institution: institution, id: id, alreadyStored: false)
         } else {
             DatabaseManager.sharedInstance.savePhoto(convertedImage, institution: institution, user: "1", id: id)
             
@@ -233,12 +240,79 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     func loadMainScreen () {
         let screenSize : CGRect = UIScreen.mainScreen().bounds
         
-        // Adds the help button
+        // Adds the help section
         let helpImg = UIImage(named: "Question")?.imageWithColor(UIColor(red: 154/255, green: 126/255, blue: 158/255, alpha: 1))
-        let helpFrame = CGRectMake(screenSize.width/20, aboutNotas!.frame.height, screenSize.width/15, screenSize.width/15)
+        let helpFrame = CGRectMake(screenSize.width/20, aboutNotas!.frame.height + screenSize.width/20, screenSize.width/15, screenSize.width/15)
     
-        var helpView : UIImageView = UIImageView(frame: helpFrame)
-        helpView.image = helpImg
-        self.view.addSubview(helpView)
+        helpView = UIImageView(frame: helpFrame)
+        helpView!.image = helpImg
+        helpView!.alpha = 0
+        
+        helpText = NonSelectableUTV(frame: CGRectMake(screenSize.width/20 + screenSize.width/15, helpView!.frame.origin.y - helpView!.frame.height/2, screenSize.size.width - (screenSize.width/20 + (screenSize.width/15)), 2.5 * helpView!.frame.height))
+        helpText!.textAlignment = NSTextAlignment.Left
+        helpText!.font = UIFont(name: "Roboto-Thin", size: screenSize.size.height/20 * 0.9 * 0.6)
+        helpText!.textColor = UIColor(red: 100/255, green: 100/255, blue: 100/255, alpha: 1)
+        helpText!.text = "Para instruções de como tirar a foto de sua nota fiscal."
+        helpText!.alpha = 0
+        
+        self.view.addSubview(helpView!)
+        self.view.addSubview(helpText!)
+        
+        // Adds the settings section
+        let settingsImg = UIImage(named: "Config")?.imageWithColor(UIColor(red: 170/255, green: 170/255, blue: 170/255, alpha: 1))
+        let settingsFrame = CGRectMake(screenSize.width - screenSize.width/20 - screenSize.width/15, helpView!.frame.origin.y + screenSize.height/5 * 0.6, screenSize.width/15, screenSize.width/15)
+        
+        settingsView = UIImageView(frame: settingsFrame)
+        settingsView!.image = settingsImg
+        settingsView!.alpha = 0
+        
+        settingsText = NonSelectableUTV(frame: CGRectMake(screenSize.width/20 - screenSize.width/15, settingsView!.frame.origin.y - settingsView!.frame.height/2, screenSize.size.width - (screenSize.width/20 + (screenSize.width/15)), 2.5 * settingsView!.frame.height))
+        settingsText!.textAlignment = NSTextAlignment.Right
+        settingsText!.font = UIFont(name: "Roboto-Thin", size: screenSize.size.height/20 * 0.9 * 0.6)
+        settingsText!.textColor = UIColor(red: 100/255, green: 100/255, blue: 100/255, alpha: 1)
+        settingsText!.text = "Para alterar a instituição que deseja realizar a doação e outras preferências."
+        settingsText!.alpha = 0
+        
+        self.view.addSubview(settingsText!)
+        self.view.addSubview(settingsView!)
+        
+        // Adds the camera pointer
+        let notinhaImg = UIImage(named: "NotaCharacter2")?
+        let barHeight = UIApplication.sharedApplication().statusBarFrame.height + 118
+        let notinhaX : CGFloat = screenSize.width * 0.5
+        let notinhaY : CGFloat = screenSize.height - barHeight + 20 - screenSize.height * 0.075 - (screenSize.width * 0.175)
+        let notinhaFrame = CGRectMake(notinhaX, notinhaY, screenSize.width * 0.35, screenSize.width * 0.35)
+        
+        notinhaView = UIImageView(frame: notinhaFrame)
+        notinhaView!.contentMode = UIViewContentMode.ScaleAspectFit
+        notinhaView!.image = notinhaImg
+        notinhaView!.alpha = 0
+        
+        notinhaText = NonSelectableUTV(frame: CGRectMake(screenSize.width/20, notinhaView!.frame.origin.y - screenSize.height * 0.05, screenSize.width - screenSize.width/10, 2.5 * settingsView!.frame.height))
+        notinhaText!.textAlignment = NSTextAlignment.Center
+        notinhaText!.font = UIFont(name: "Roboto-Thin", size: screenSize.size.height/20 * 0.9 * 0.6)
+        notinhaText!.textColor = UIColor(red: 120/255, green: 120/255, blue: 120/255, alpha: 1)
+        notinhaText!.text = "Clique aqui para tirar a foto ou selecionar da galera a sua nota fiscal!"
+        notinhaText!.alpha = 0
+        
+        self.view.addSubview(notinhaText!)
+        self.view.addSubview(notinhaView!)
+        
+        beginMainFadeIn()
+    }
+    
+    func beginMainFadeIn () {
+        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations:  { () -> Void in
+            self.helpView!.alpha = 1.0
+            self.helpText!.alpha = 1.0
+            self.settingsText!.alpha = 1.0
+            self.settingsView!.alpha = 1.0
+            }, completion:  { (finished: Bool) -> Void in
+                // Fade out
+                UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                    self.notinhaText!.alpha = 1.0
+                    self.notinhaView!.alpha = 1.0
+                    }, completion: nil)
+        })
     }
 }

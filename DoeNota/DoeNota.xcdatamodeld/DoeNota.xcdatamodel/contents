@@ -10,10 +10,11 @@
         <attribute name="hability3G" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="institution" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="numberPhotos" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="sentPhotos" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="Nota" positionX="-63" positionY="-18" width="128" height="103"/>
-        <element name="Preferences" positionX="124" positionY="-18" width="128" height="105"/>
+        <element name="Preferences" positionX="124" positionY="-18" width="128" height="120"/>
     </elements>
 </model>

@@ -56,6 +56,7 @@ class DatabaseManager: NSObject {
             preference.setValue(true, forKey: "hability3G")
             preference.setValue(1, forKey: "institution")
             preference.setValue(0, forKey: "numberPhotos")
+            preference.setValue(0, forKey: "sentPhotos")
             preference.setValue(uniqueID, forKey: "userID")
             
             managedContext.save(&error)
@@ -153,6 +154,24 @@ class DatabaseManager: NSObject {
         }
         else {
             return 0
+        }
+    }
+    
+    func sentPhotos() -> Int {
+        if (!preferences.isEmpty) {
+            let preferencesInfo = preferences[0]
+            let totalCount = preferencesInfo.valueForKeyPath("sentPhotos") as Int
+            
+            return totalCount
+        }
+        else {
+            return 0
+        }
+    }
+    
+    func increaseSentPhotos () {
+        if (!preferences.isEmpty) {
+            preferences[0].setValue(totalPhotos() + 1, forKey: "sentPhotos")
         }
     }
     
