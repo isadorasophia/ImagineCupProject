@@ -440,12 +440,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jose Ernesto Stelzer Monar (S3W49QEUTD)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Jose Ernesto Stelzer Monar (S3W49QEUTD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jose Ernesto Stelzer Monar (S3W49QEUTD)";
 				INFOPLIST_FILE = DoeNota/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "814742e2-4b72-44c1-8481-9674236f1477";
+				PROVISIONING_PROFILE = "22ba4af9-a9c1-4997-9a3c-719856646f9b";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -455,12 +456,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jose Ernesto Stelzer Monar (S3W49QEUTD)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jose Ernesto Stelzer Monar (S3W49QEUTD)";
 				INFOPLIST_FILE = DoeNota/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "814742e2-4b72-44c1-8481-9674236f1477";
+				PROVISIONING_PROFILE = "22ba4af9-a9c1-4997-9a3c-719856646f9b";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
