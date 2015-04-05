@@ -76,7 +76,7 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         self.navigationItem.titleView = titleView
         
         // Let user know about the status
-        aboutNotas = NonSelectableUTV(frame: CGRectMake(0, UIApplication.sharedApplication().statusBarFrame.origin.y + UIApplication.sharedApplication().statusBarFrame.height - 22, screenSize.size.width, screenSize.size.height/20 * 0.9))
+        aboutNotas = NonSelectableUTV(frame: CGRectMake(0, 0, screenSize.size.width, screenSize.size.height/20 * 0.9))
         
         aboutNotas!.backgroundColor = UIColor(red: 197/255, green: 171/255, blue: 202/255, alpha: 0.35)
         aboutNotas!.textColor = UIColor(red: 128/255, green: 104/255, blue: 131/255, alpha: 1)
@@ -188,12 +188,12 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         let institution = DatabaseManager.sharedInstance.getInstitution()
         let id = "IOS " + DatabaseManager.sharedInstance.userID()
         
+        DatabaseManager.sharedInstance.savePhoto(convertedImage, institution: institution, user: "1", id: id)
+        
+        self.updateNotas()
+        
         if (reachability.isReachable() && ((reachability.isReachableViaWWAN() && DatabaseManager.sharedInstance.getHability3G()) || reachability.isReachableViaWiFi())) {
-            serverConnection.sendToServer(convertedImage, user: "1", institution: institution, id: id, alreadyStored: false)
-        } else {
-            DatabaseManager.sharedInstance.savePhoto(convertedImage, institution: institution, user: "1", id: id)
-            
-            self.updateNotas()
+            serverConnection.sendToServer(convertedImage, user: "1", institution: institution, id: id, alreadyStored: true)
         }
         
         picker.dismissViewControllerAnimated(true, completion: nil)
@@ -225,11 +225,11 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         
         self.view.addSubview(sent)
         
-        UIView.animateWithDuration(1.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations:  { () -> Void in
+        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations:  { () -> Void in
             sent.alpha = 1.0
             }, completion:  { (finished: Bool) -> Void in
                 // Fade out
-                UIView.animateWithDuration(1.0, delay: 1, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                UIView.animateWithDuration(0.5, delay: 2, options: UIViewAnimationOptions.CurveEaseOut, animations: {
                     sent.alpha = 0
                     }, completion: nil)
         })
@@ -252,7 +252,7 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         helpText!.textAlignment = NSTextAlignment.Left
         helpText!.font = UIFont(name: "Roboto-Thin", size: screenSize.size.height/20 * 0.9 * 0.6)
         helpText!.textColor = UIColor(red: 100/255, green: 100/255, blue: 100/255, alpha: 1)
-        helpText!.text = "Para instruções de como tirar a foto de sua nota fiscal."
+        helpText!.text = "Aperte para instruções de como tirar a foto de sua nota fiscal."
         helpText!.alpha = 0
         
         self.view.addSubview(helpView!)
@@ -266,11 +266,11 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         settingsView!.image = settingsImg
         settingsView!.alpha = 0
         
-        settingsText = NonSelectableUTV(frame: CGRectMake(screenSize.width/20 - screenSize.width/15, settingsView!.frame.origin.y - settingsView!.frame.height/2, screenSize.size.width - (screenSize.width/20 + (screenSize.width/15)), 2.5 * settingsView!.frame.height))
+        settingsText = NonSelectableUTV(frame: CGRectMake(screenSize.width/20 - screenSize.width/15, settingsView!.frame.origin.y - settingsView!.frame.height/2, screenSize.size.width - (screenSize.width/20 + (screenSize.width/15)), 2 * 2.5 * settingsView!.frame.height))
         settingsText!.textAlignment = NSTextAlignment.Right
         settingsText!.font = UIFont(name: "Roboto-Thin", size: screenSize.size.height/20 * 0.9 * 0.6)
         settingsText!.textColor = UIColor(red: 100/255, green: 100/255, blue: 100/255, alpha: 1)
-        settingsText!.text = "Para alterar a instituição que deseja realizar a doação e outras preferências."
+        settingsText!.text = "Aperte para alterar a instituição a qual deseja realizar a doação e outras preferências."
         settingsText!.alpha = 0
         
         self.view.addSubview(settingsText!)
@@ -292,7 +292,7 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         notinhaText!.textAlignment = NSTextAlignment.Center
         notinhaText!.font = UIFont(name: "Roboto-Thin", size: screenSize.size.height/20 * 0.9 * 0.6)
         notinhaText!.textColor = UIColor(red: 120/255, green: 120/255, blue: 120/255, alpha: 1)
-        notinhaText!.text = "Clique aqui para tirar a foto ou selecionar da galera a sua nota fiscal!"
+        notinhaText!.text = "Clique aqui para tirar a foto ou selecionar da galeria a sua nota fiscal!"
         notinhaText!.alpha = 0
         
         self.view.addSubview(notinhaText!)
@@ -302,7 +302,7 @@ class MainPageVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     }
     
     func beginMainFadeIn () {
-        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations:  { () -> Void in
+        UIView.animateWithDuration(0.5, delay: 0.5, options: UIViewAnimationOptions.CurveEaseIn, animations:  { () -> Void in
             self.helpView!.alpha = 1.0
             self.helpText!.alpha = 1.0
             self.settingsText!.alpha = 1.0

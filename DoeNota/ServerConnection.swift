@@ -69,12 +69,6 @@ class ServerConnection: NSObject, NSURLConnectionDelegate, NSXMLParserDelegate {
                     }
                 }
             } else {
-                if (!alreadyStored) {
-                    dispatch_sync(dispatch_get_main_queue())
-                    {
-                        DatabaseManager.sharedInstance.savePhoto(imageData, institution: institution, user: user, id: id)
-                    }
-                }
                 // Error occurred
             }
         } )

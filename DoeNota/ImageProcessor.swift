@@ -25,7 +25,7 @@ class ImageProcessor: NSObject {
     func processImage (var image: UIImage!) -> UIImage {
         // Always make sure the image is on vertical
         if (image.size.height < image.size.width) {
-            image = UIImage(CGImage: image.CGImage, scale: image.scale, orientation: UIImageOrientation.Left)
+            image = UIImage(CGImage: image.CGImage, scale: image.scale, orientation: UIImageOrientation.Right)
         }
         
         var actualHeight = image.size.height;

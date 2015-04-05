@@ -74,6 +74,7 @@
 		6EE78B1A1A9192FA00170FB6 /* SettingsTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTVC.swift; sourceTree = "<group>"; };
 		6EE78B1D1A923C7A00170FB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6EECB7841ACDDF5F00BAFA27 /* NotaCharacter2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NotaCharacter2.png; sourceTree = SOURCE_ROOT; };
+		6EECB7861ACF508F00BAFA27 /* DoeNota.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DoeNota.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +135,7 @@
 		6EE78AD21A8D71BF00170FB6 /* DoeNota */ = {
 			isa = PBXGroup;
 			children = (
+				6EECB7861ACF508F00BAFA27 /* DoeNota.entitlements */,
 				6E535A5B1ABBDD100057E491 /* Samples */,
 				6E798D311ABB5EA7005A1FA3 /* Fonts */,
 				6EE78B141A915EAD00170FB6 /* Camera.png */,
@@ -235,6 +237,14 @@
 					6EE78ACF1A8D71BF00170FB6 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = A856ZT7H5D;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+							com.apple.iCloud = {
+								enabled = 0;
+							};
+						};
 					};
 					6EE78AE71A8D71BF00170FB6 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -430,12 +440,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jose Ernesto Stelzer Monar (S3W49QEUTD)";
 				INFOPLIST_FILE = DoeNota/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "814742e2-4b72-44c1-8481-9674236f1477";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -445,12 +455,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jose Ernesto Stelzer Monar (S3W49QEUTD)";
 				INFOPLIST_FILE = DoeNota/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "814742e2-4b72-44c1-8481-9674236f1477";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
